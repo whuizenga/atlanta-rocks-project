@@ -15,6 +15,7 @@ const RatingSchema = mongoose.Schema({
 
 const RouteSchema = mongoose.Schema({
     wall: String,
+    leadOnly: Boolean,
     color: String,
     difficulty: String,
     date_set: Date,
@@ -29,16 +30,26 @@ const UserSchema = mongoose.Schema({
     lastName: String,
     username: String,
     password: String,
-    dob: Date,
+    admin: Boolean,
+    birthday: Date,
 });
 
-RouterSchema.pre('save', function(next){
+RouteSchema.pre('save', function(next){
     let now = new Date();
-  
-    if ( !this.created_at ) {
-        this.created_at = now;
+    if(!this.leadOnly){
+        this.leadOnly = false;
+    }
+    if ( !this.date_set ) {
+        this.date_set = now;
     }
     next()
+})
+
+UserSchema.pre('save', function(next){
+    if(!this.admin){
+        this.admin = false;
+    }
+    next();
 })
 
 var CommentModel = mongoose.model("Comment", CommentSchema);

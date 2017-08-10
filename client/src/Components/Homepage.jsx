@@ -7,11 +7,13 @@ class Homepage extends Component {
         const TitleDiv = styled.div`
             display: flex;
             flex-direction: column;
-            height: 100%;
+            height: 90vh;
             justify-content: center;
             align-items: center;
             h1{
-            font-size: 60px;
+            text-align: center;
+            font-size: 70px;
+            font-family: 'Frijole', cursive;
             }
         `
         return (
