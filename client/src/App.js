@@ -5,9 +5,16 @@ import styled from 'styled-components';
 import LoginButton from './Components/Login';
 import Homepage from './Components/Homepage.jsx';
 import SearchPage from './Components/SearchPage.jsx';
+import LoginScreen from './Components/LoginScreen.jsx';
 
 
 class App extends Component {
+  constructor(){
+        super()
+        this.state = {
+            loggedIn: false,
+        }
+    }
   render() {
   const NavBar = styled.div`
     display: flex;
@@ -19,12 +26,13 @@ class App extends Component {
       <div>
         <NavBar>
           <Link to="/">Home</Link>
-          <LoginButton />
+          <LoginButton loggedIn = {this.state.loggedIn}/>
         </NavBar>
       </div>
       <div>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/search" component={SearchPage} />
+        <Route exact path="/login" component={LoginScreen} />
       </div>
       </div>
       </Router>
