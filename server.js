@@ -18,10 +18,10 @@ connection.on('error', (err) => {
 
 app.use(bodyParser.json());
 app.get('/', (req,res) => {
-  res.send('Hello world!')
+  res.send("Express server is alive")
 })
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log("Magic happening on port " + PORT);
+  console.log("Server is up, and on port " + PORT);
 })
