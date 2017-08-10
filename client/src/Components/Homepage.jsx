@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 class Homepage extends Component {
+    constructor(){
+        super()
+        this.state = {
+            loggedIn: false,
+        }
+    }
+
     render() {
         const TitleDiv = styled.div`
             display: flex;
