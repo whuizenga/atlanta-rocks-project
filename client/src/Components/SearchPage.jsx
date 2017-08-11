@@ -14,8 +14,22 @@ class SearchPage extends Component {
             <div>
                 <SearchWrapper>
                 <p>Search by wall</p>
+                <form>
+                    <select name="gym-location">
+                        <option value="mg"> Main Gym </option>
+                        <option value="pr"> Party Room </option>
+                    </select>
+                    <input name="name" type="number" step="1" min="1" max="32" /> 
+                    <div><button>Submit</button></div>
+                </form>
 
                 <p>Search by difficulty</p>
+
+                <form>
+                    <label htmlFor="difficulty">5.</label>
+                    <input name="difficulty" type="number" step="1" min="6" max="13" />
+                    <div><button>Submit</button></div>
+                </form>
                 </SearchWrapper>
             </div>
         );
