@@ -4,7 +4,7 @@ class ShowWall extends Component {
     render() {
         return (
             <div>
-                Show a list of the walls here
+                Show a list of the route on the wall here
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 class SearchPage extends Component {
@@ -7,13 +8,16 @@ class SearchPage extends Component {
         this.state = {
             redirectToWall: false,
             redirectToDifficulty: false,
+            searchParam: "",
         }
     }
     
     componentWillMount() {
+        //reset state back to default
         const newState = {...this.state}
         newState.redirectToDifficulty = false;
         newState.redirectToWall = false;
+        newState.searh = "";
 
         this.setState(newState);
     }
@@ -23,11 +27,12 @@ class SearchPage extends Component {
 
         const gymLocation = event.target.gymLocation.value;
         const wallNumber = event.target.wallNumber.value;
+        const search = gymLocation+wallNumber
 
         console.log(gymLocation+wallNumber);
 
         this.props.updateRouteSearch(gymLocation+wallNumber);
-        this.setState({redirectToWall: true})
+        this.setState({redirectToWall: true, searchParam: search})
     }
 
     _searchByDifficulty = (event) => {
@@ -38,7 +43,7 @@ class SearchPage extends Component {
         console.log(difficulty);
 
         this.props.updateRouteSearch(difficulty);
-        this.setState({redirectToDifficulty: true})
+        this.setState({redirectToDifficulty: true, searchParam: difficulty})
     }
 
     render() {
@@ -52,7 +57,7 @@ class SearchPage extends Component {
         if(this.state.redirectToDifficulty) {
             return <p>will go to difficulty</p>
         } else if (this.state.redirectToWall) {
-            return <p>will go to wall</p>
+            return <Redirect to={`/wall/${this.state.searchParam}`} />
         } else {
         return (
             <div>

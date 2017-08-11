@@ -8,6 +8,7 @@ import Homepage from './Components/Homepage.jsx';
 import SearchPage from './Components/SearchPage.jsx';
 import LoginScreen from './Components/LoginScreen.jsx';
 import UserPage from './Components/UserPage.jsx';
+import ShowWall from './Components/ShowWall.jsx';
 
 
 class App extends Component {
@@ -101,6 +102,10 @@ class App extends Component {
               <UserPage {...routeProps}
               loggedIn = {this.state.loggedIn}
               />} /> 
+          <Route exact path="/wall/:wallId" render={routeProps => 
+              <ShowWall {...routeProps}
+              routeSearch = {this.state.routeSearch}
+              />} />
         </Switch>
 
       </div>
