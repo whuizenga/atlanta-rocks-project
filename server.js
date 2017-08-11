@@ -23,8 +23,8 @@ app.use('/api/route', RouteController);
 
 app.use(express.static(__dirname + '/client/build/'));
 
-app.get('/', (req,res) => {
-  res.sendFile(__dirname + '/client/build/index.html')
+app.get('/', (res,req) => {
+  res.sendFile(__dirname + '/client/build/index.html');
 })
 
 
