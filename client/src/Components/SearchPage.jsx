@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 class SearchPage extends Component {
+    
+
     _searchByWall = (event) => {
         event.preventDefault();
 
@@ -9,6 +11,9 @@ class SearchPage extends Component {
         const wallNumber = event.target.wallNumber.value;
 
         console.log(gymLocation+wallNumber);
+
+        this.props.updateRouteSearch(gymLocation+wallNumber);
+        
     }
 
     _searchByDifficulty = (event) => {
@@ -17,6 +22,8 @@ class SearchPage extends Component {
         const difficulty = "5." + event.target.difficulty.value;
 
         console.log(difficulty);
+
+        this.props.updateRouteSearch(difficulty);
     }
 
     render() {

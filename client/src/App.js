@@ -19,7 +19,7 @@ class App extends Component {
             username: "",
             firstName: "",
             loginError: "",
-
+            routeSearch: "",
         }
     }
 
@@ -58,6 +58,14 @@ class App extends Component {
 
       this.setState(newState);
   }
+
+  _updateRouteSearch = (searchParam) => {
+    const newState = {...this.state};
+    newState.routeSearch = searchParam;
+
+    console.log("updating routeSearch to " + searchParam);
+    this.setState(newState);
+  }
   render() {
     const NavBar = styled.div`
       display: flex;
@@ -76,13 +84,18 @@ class App extends Component {
       <div>
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/search" component={SearchPage} />
+          <Route exact path="/search" render={routeProps => 
+              <SearchPage {...routeProps}
+                routeSearch={this.state.routeSeach}
+                updateRouteSearch = {this._updateRouteSearch}
+                 />} />
           <Route exact path="/login" render={routeProps => 
               <LoginScreen {...routeProps} 
                 handleLogin={this._handleLogin}
                 loginError={this.state.loginError}
                 loggedIn={this.state.loggedIn}
-                username={this.state.username}/>} />
+                username={this.state.username}
+                />} />
           <Route exact path="/user/:username" component={UserPage} />
         </Switch>
 
