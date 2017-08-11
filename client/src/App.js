@@ -65,8 +65,6 @@ class App extends Component {
   _updateRouteSearch = (searchParam) => {
     const newState = {...this.state};
     newState.routeSearch = searchParam;
-
-    console.log("updating routeSearch to " + searchParam);
     this.setState(newState);
   }
   render() {

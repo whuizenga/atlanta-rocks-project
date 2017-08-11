@@ -29,8 +29,6 @@ class SearchPage extends Component {
         const wallNumber = event.target.wallNumber.value;
         const search = gymLocation+wallNumber
 
-        console.log(gymLocation+wallNumber);
-
         this.props.updateRouteSearch(gymLocation+wallNumber);
         this.setState({redirectToWall: true, searchParam: search})
     }
@@ -39,8 +37,6 @@ class SearchPage extends Component {
         event.preventDefault();
 
         const difficulty = "5." + event.target.difficulty.value;
-
-        console.log(difficulty);
 
         this.props.updateRouteSearch(difficulty);
         this.setState({redirectToDifficulty: true, searchParam: difficulty})
