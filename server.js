@@ -21,8 +21,10 @@ app.use(bodyParser.json());
 app.use("/api/user", UsersController);
 app.use('/api/route', RouteController);
 
+app.use(express.static(__dirname + '/client/build/'));
+
 app.get('/', (req,res) => {
-  res.send("Express server is alive")
+  res.sendFile(__dirname + '/client/build/index.html')
 })
 
 
