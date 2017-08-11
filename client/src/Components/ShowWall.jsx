@@ -18,7 +18,6 @@ class ShowWall extends Component {
 
         axios.get(`/api/route/wallSearch/${searchParam}`)
             .then((res) => {
-                console.log(res.data);
                 const newState = {...this.state};
                 newState.routes = res.data;
                 newState.wallNumber = searchParam;
@@ -39,9 +38,12 @@ class ShowWall extends Component {
                 <h1>Wall {this.state.wallNumber}</h1>
 
                 {this.state.routes.map((route, index) => {
+                    if(!route.date_retired){
                     return <RouteList key={index}
                             route={route}/>
-                })}
+                } else {
+                    return null;
+                }})}
                 </WallWrapper>
             </div>
         );
