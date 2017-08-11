@@ -14,6 +14,9 @@ class App extends Component {
         super()
         this.state = {
             loggedIn: false,
+            username: "",
+            firstName: "",
+            loginError: "",
         }
     }
 
@@ -23,13 +26,33 @@ class App extends Component {
     const username = event.target.username.value;
     const password = event.target.password.value;
 
-    axios.get(`api/user/${username}/${password}`)
+    axios.get(`/api/user/login/${username}/${password}`)
       .then((res) => {
-        console.log(res);
+        
+        const newState = {...this.state};
+
+        if(res.data.username){
+          newState.loggedIn = true;
+          newState.username = res.data.username;
+          newState.firstName = res.data.firstName;
+          newState.loginError = "";
+        } else {
+          newState.loginError = res.data;
+        };
+        this.setState(newState);
       })
       .catch((err) => {
         console.log(err);
       })
+  }
+  _handleLogout = (event) => {
+      const newState = {...this.state};
+      newState.username = "";
+      newState.firstName = "";
+      newState.loginError = "";
+      newState.loggedIn = false;
+
+      this.setState(newState);
   }
   render() {
     const NavBar = styled.div`
@@ -43,13 +66,16 @@ class App extends Component {
       <div>
         <NavBar>
           <Link to="/">Home</Link>
-          <LoginButton loggedIn = {this.state.loggedIn}/>
+          <LoginButton loggedIn = {this.state.loggedIn}  handleLogout={this._handleLogout}/>
         </NavBar>
       </div>
       <div>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/search" component={SearchPage} />
-          <Route exact path="/login" render={routeProps => <LoginScreen {...routeProps} handleLogin={this._handleLogin}/>} />
+          <Route exact path="/login" render={routeProps => 
+              <LoginScreen {...routeProps} 
+                handleLogin={this._handleLogin}
+                loginError={this.state.loginError}/>} />
 
       </div>
       </div>

@@ -19,11 +19,16 @@ class LoginScreen extends Component {
             justify-content: center;
             align-items: center;
             height: 50vh;
+            p{
+                color: red;
+                font-size: 15px;
+            }
         `
         return (
             <div>
                 <h1>Please login or sign up</h1>
                 <LoginDiv>
+                {this.props.loginError ? <p>{this.props.loginError}</p> : null}
                 <form onSubmit={this.props.handleLogin}>
                     <div>
                     <label htmlFor="username">Username: </label>

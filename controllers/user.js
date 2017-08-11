@@ -17,14 +17,14 @@ router.get("/login/:username/:password", (req, res) => {
             return user.username === username
         })
         if (userIWant.password === password){
-            res.send("success")
+            res.json(userIWant);
         } else {
-            res.send("Wrong Password")
+            res.send("wrong password")
         }
         res.json(userIWant);
     })
         .catch((err) => {
-            res.send("User does not exist");
+            res.send("username does not exist");
         })
 })
 module.exports = router;
