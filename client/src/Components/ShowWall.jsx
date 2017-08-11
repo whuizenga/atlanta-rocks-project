@@ -15,6 +15,10 @@ class ShowWall extends Component {
         axios.get(`/api/route/wallSearch/${searchParam}`)
             .then((res) => {
                 console.log(res.data);
+                const newState = {...this.state};
+                newState.routes = res.data;
+
+                this.setState(newState);
             })
     }
 
