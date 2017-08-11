@@ -29,7 +29,7 @@ class App extends Component {
     const username = event.target.username.value;
     const password = event.target.password.value;
 
-    axios.get(`/api/user/login/${username}/${password}`)
+    axios.post(`/api/user/login/`, {username, password})
       .then((res) => {
         
         const newState = {...this.state};

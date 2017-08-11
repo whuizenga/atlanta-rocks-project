@@ -8,9 +8,9 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/login/:username/:password", (req, res) => {
-    const username = req.params.username;
-    const password = req.params.password;
+router.post("/login/", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
 
     User.find().then((users) => {
         const userIWant = users.find((user) => {
