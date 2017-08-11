@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class ShowWall extends Component {
     constructor(){
         super()
         this.state={
-
+            routes: [],
         }
     }
 
     componentWillMount(){
         const searchParam = this.props.match.params.wallId;
 
-        console.log(searchParam);
+        axios.get(`/api/route/wallSearch/${searchParam}`)
+            .then((res) => {
+                console.log(res.data);
+            })
     }
 
     render() {

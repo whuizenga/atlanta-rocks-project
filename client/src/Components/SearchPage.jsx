@@ -17,7 +17,7 @@ class SearchPage extends Component {
         const newState = {...this.state}
         newState.redirectToDifficulty = false;
         newState.redirectToWall = false;
-        newState.searh = "";
+        newState.searchParam = "";
 
         this.setState(newState);
     }
@@ -27,7 +27,7 @@ class SearchPage extends Component {
 
         const gymLocation = event.target.gymLocation.value;
         const wallNumber = event.target.wallNumber.value;
-        const search = gymLocation+wallNumber
+        const search = gymLocation.toUpperCase()+wallNumber
 
         this.props.updateRouteSearch(gymLocation+wallNumber);
         this.setState({redirectToWall: true, searchParam: search})
