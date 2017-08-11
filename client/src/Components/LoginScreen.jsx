@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 class LoginScreen extends Component {
-    constructor(){
-        super();
-        this.state ={
-            userlogin:{
-                username: "",
-                password: "",
-            },
-        }
-    }
 
     render() {
         const LoginDiv = styled.div`
@@ -24,6 +16,10 @@ class LoginScreen extends Component {
                 font-size: 15px;
             }
         `
+        if (this.props.loggedIn){
+            return <Redirect to={`/user/${this.props.username}`} />
+        }
+
         return (
             <div>
                 <h1>Please login or sign up</h1>
