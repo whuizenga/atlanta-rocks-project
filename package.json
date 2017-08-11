@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/whuizenga/atlanta-rocks-project#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "concurrently": "^3.5.0",
     "dotenv": "^4.0.0",
