@@ -78,7 +78,7 @@ class App extends Component {
       <div>
         <NavBar>
           <Link to="/">Home</Link>
-          <LoginButton loggedIn = {this.state.loggedIn}  handleLogout={this._handleLogout}/>
+          <LoginButton loggedIn = {this.state.loggedIn}  handleLogout={this._handleLogout} firstName={this.state.firstName}/>
         </NavBar>
       </div>
       <div>
@@ -96,7 +96,10 @@ class App extends Component {
                 loggedIn={this.state.loggedIn}
                 username={this.state.username}
                 />} />
-          <Route exact path="/user/:username" component={UserPage} />
+          <Route exact path="/user/:username" render={routeProps => 
+              <UserPage {...routeProps}
+              loggedIn = {this.state.loggedIn}
+              />} /> 
         </Switch>
 
       </div>
