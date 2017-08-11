@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import RouteList from './RouteList';
+
 class ShowWall extends Component {
     constructor(){
         super()
         this.state={
+            wallNumber: "",
             routes: [],
         }
     }
@@ -17,7 +20,7 @@ class ShowWall extends Component {
                 console.log(res.data);
                 const newState = {...this.state};
                 newState.routes = res.data;
-
+                newState.wallNumber = searchParam;
                 this.setState(newState);
             })
     }
@@ -25,7 +28,12 @@ class ShowWall extends Component {
     render() {
         return (
             <div>
-                Show a list of the route on the wall here
+                <h1>Wall {this.state.wallNumber}</h1>
+
+                {this.state.routes.map((route, index) => {
+                    return <RouteList />
+                })}
+
             </div>
         );
     }
