@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const UsersController = require('./Controllers/user');
+const UsersController = require('./controllers/user');
 const RouteController = require('./controllers/route')
 const app = express();
 mongoose.Promise = global.Promise;
