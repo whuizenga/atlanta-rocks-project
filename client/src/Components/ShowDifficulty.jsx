@@ -21,7 +21,7 @@ class ShowWall extends Component {
                 console.log(res.data)
                 const newState = {...this.state};
                 newState.routes = res.data;
-                newState.wallNumber = searchParam;
+                newState.difficulty = searchParam;
                 this.setState(newState);
             })
     }
@@ -41,7 +41,8 @@ class ShowWall extends Component {
                 {this.state.routes.map((route, index) => {
                     if(!route.date_retired){
                     return <RouteList key={index}
-                            route={route}/>
+                            route={route}
+                            displayWall={true}/>
                 } else {
                     return null;
                 }})}

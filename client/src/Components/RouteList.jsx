@@ -29,6 +29,11 @@ class RouteList extends Component {
     
         return ( 
             <RouteWrapper>
+            {this.props.displayWall ?
+            <div>
+                <h1>{route.wall}</h1>
+            </div>
+            : null}
             <div>
                 <h1>{route.difficulty}</h1>
             </div>
