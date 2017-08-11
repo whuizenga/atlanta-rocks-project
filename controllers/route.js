@@ -8,8 +8,17 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/search/:searchParam', (req, res) => {
-
+router.get('/wallSearch/:searchParam', (req, res) => {
+    const searchParam = req.params.searchParam;
+    console.log(searchParam);
+    Route.find().then((routes) => {
+        const matchingRoutes = routes.filter((route) => {
+            return route.wall === searchParam;
+        })
+        res.json(matchingRoutes);
+    }).catch((err) => {
+        res.send("wall not found");
+    })
 });
 
 module.exports = router;
