@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 import RouteList from './RouteList';
 
@@ -26,14 +27,22 @@ class ShowWall extends Component {
     }
 
     render() {
+        const WallWrapper = styled.div`
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        `
         return (
             <div>
+                <WallWrapper>
                 <h1>Wall {this.state.wallNumber}</h1>
 
                 {this.state.routes.map((route, index) => {
-                    return <RouteList />
+                    return <RouteList key={index}
+                            route={route}/>
                 })}
-
+                </WallWrapper>
             </div>
         );
     }
