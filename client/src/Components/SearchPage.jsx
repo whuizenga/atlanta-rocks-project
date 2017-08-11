@@ -2,7 +2,21 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 class SearchPage extends Component {
+    constructor() {
+        super();
+        this.state = {
+            redirectToWall: false,
+            redirectToDifficulty: false,
+        }
+    }
     
+    componentWillMount() {
+        const newState = {...this.state}
+        newState.redirectToDifficulty = false;
+        newState.redirectToWall = false;
+
+        this.setState(newState);
+    }
 
     _searchByWall = (event) => {
         event.preventDefault();
@@ -13,7 +27,7 @@ class SearchPage extends Component {
         console.log(gymLocation+wallNumber);
 
         this.props.updateRouteSearch(gymLocation+wallNumber);
-        
+        this.setState({redirectToWall: true})
     }
 
     _searchByDifficulty = (event) => {
@@ -24,6 +38,7 @@ class SearchPage extends Component {
         console.log(difficulty);
 
         this.props.updateRouteSearch(difficulty);
+        this.setState({redirectToDifficulty: true})
     }
 
     render() {
@@ -34,6 +49,11 @@ class SearchPage extends Component {
             align-items: center;
             height: 90vh;
         `
+        if(this.state.redirectToDifficulty) {
+            return <p>will go to difficulty</p>
+        } else if (this.state.redirectToWall) {
+            return <p>will go to wall</p>
+        } else {
         return (
             <div>
                 <SearchWrapper>
@@ -56,7 +76,7 @@ class SearchPage extends Component {
                 </form>
                 </SearchWrapper>
             </div>
-        );
+        );}
     }
 }
 

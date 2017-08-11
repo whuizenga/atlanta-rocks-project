@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -44,6 +44,7 @@ class App extends Component {
           newState.loginError = res.data;
         };
         this.setState(newState);
+
       })
       .catch((err) => {
         console.log(err);
