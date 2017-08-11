@@ -7,10 +7,10 @@ import LoginButton from './Components/Login';
 import Homepage from './Components/Homepage.jsx';
 import SearchPage from './Components/SearchPage.jsx';
 import LoginScreen from './Components/LoginScreen.jsx';
+import SignupScreen from './Components/SignupScreen.jsx';
 import UserPage from './Components/UserPage.jsx';
 import ShowWall from './Components/ShowWall.jsx';
 import ShowDifficulty from './Components/ShowDifficulty.jsx';
-
 
 class App extends Component {
   constructor(){
@@ -97,6 +97,7 @@ class App extends Component {
                 loggedIn={this.state.loggedIn}
                 username={this.state.username}
                 />} />
+          <Route exact page="/signup" component={SignupScreen} />
           <Route exact path="/user/:username" render={routeProps => 
               <UserPage {...routeProps}
               loggedIn = {this.state.loggedIn}

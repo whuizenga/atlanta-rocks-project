@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 class LoginScreen extends Component {
@@ -22,7 +22,7 @@ class LoginScreen extends Component {
 
         return (
             <div>
-                <h1>Please login or sign up</h1>
+                <h1>Please login or <Link to="/signup">sign up</Link></h1>
                 <LoginDiv>
                 {this.props.loginError ? <p>{this.props.loginError}</p> : null}
                 <form onSubmit={this.props.handleLogin}>
