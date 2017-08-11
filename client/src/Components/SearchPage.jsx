@@ -11,6 +11,14 @@ class SearchPage extends Component {
         console.log(gymLocation+wallNumber);
     }
 
+    _searchByDifficulty = (event) => {
+        event.preventDefault();
+
+        const difficulty = "5." + event.target.difficulty.value;
+
+        console.log(difficulty);
+    }
+
     render() {
         const SearchWrapper = styled.div`
             display: flex;
@@ -34,7 +42,7 @@ class SearchPage extends Component {
 
                 <p>Search by difficulty</p>
 
-                <form>
+                <form onSubmit={this._searchByDifficulty}>
                     <label htmlFor="difficulty">5.</label>
                     <input name="difficulty" type="number" step="1" min="6" max="13" />
                     <div><button>Submit</button></div>
