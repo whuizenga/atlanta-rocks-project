@@ -5,7 +5,7 @@ class SearchPage extends Component {
     _searchByWall = (event) => {
         event.preventDefault();
 
-        console.log(event.target);
+        console.log(event.target.gymLocation.value);
     }
 
     render() {
@@ -21,7 +21,7 @@ class SearchPage extends Component {
                 <SearchWrapper>
                 <p>Search by wall</p>
                 <form onSubmit={this._searchByWall}>
-                    <select name="gym-location" >
+                    <select name="gymLocation" >
                         <option value="mg"> Main Gym </option>
                         <option value="pr"> Party Room </option>
                     </select>
