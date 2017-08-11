@@ -21,4 +21,19 @@ router.get('/wallSearch/:searchParam', (req, res) => {
     })
 });
 
+router.get('/difficultySearch/:searchParam', (req, res) => {
+    const searchParam = req.params.searchParam;
+    console.log(searchParam);
+    Route.find().then((routes) => {
+        const matchingRoutes = routes.filter((route) => {
+            return  (route.difficulty === searchParam) || 
+                    (route.difficulty === searchParam+"+") ||
+                    (route.difficulty === searchParam+"-");
+        })
+        res.json(matchingRoutes);
+    }).catch((err) => {
+        res.send("difficulty not found");
+    })
+});
+
 module.exports = router;
