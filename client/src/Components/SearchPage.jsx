@@ -55,7 +55,7 @@ class SearchPage extends Component {
             height: 90vh;
         `
         if(this.state.redirectToDifficulty) {
-            return <p>will go to difficulty</p>
+            return <Redirect to={`/difficulty/${this.state.searchParam}`} />
         } else if (this.state.redirectToWall) {
             return <Redirect to={`/wall/${this.state.searchParam}`} />
         } else {

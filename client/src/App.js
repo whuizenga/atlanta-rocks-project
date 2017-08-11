@@ -9,6 +9,7 @@ import SearchPage from './Components/SearchPage.jsx';
 import LoginScreen from './Components/LoginScreen.jsx';
 import UserPage from './Components/UserPage.jsx';
 import ShowWall from './Components/ShowWall.jsx';
+import ShowDifficulty from './Components/ShowDifficulty.jsx';
 
 
 class App extends Component {
@@ -104,6 +105,10 @@ class App extends Component {
               />} /> 
           <Route exact path="/wall/:wallId" render={routeProps => 
               <ShowWall {...routeProps}
+              routeSearch = {this.state.routeSearch}
+              />} />
+          <Route exact path="/difficulty/:diffId" render={routeProps =>
+              <ShowDifficulty {...routeProps}
               routeSearch = {this.state.routeSearch}
               />} />
         </Switch>
