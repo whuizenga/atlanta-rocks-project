@@ -5,7 +5,10 @@ class SearchPage extends Component {
     _searchByWall = (event) => {
         event.preventDefault();
 
-        console.log(event.target.gymLocation.value);
+        const gymLocation = event.target.gymLocation.value;
+        const wallNumber = event.target.wallNumber.value;
+
+        console.log(gymLocation+wallNumber);
     }
 
     render() {
@@ -25,7 +28,7 @@ class SearchPage extends Component {
                         <option value="mg"> Main Gym </option>
                         <option value="pr"> Party Room </option>
                     </select>
-                    <input name="name" type="number" step="1" min="1" max="32" /> 
+                    <input name="wallNumber" type="number" step="1" min="1" max="32" /> 
                     <div><button>Submit</button></div>
                 </form>
 
