@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 class SearchPage extends Component {
+    _searchByWall = (event) => {
+        event.preventDefault();
+
+        console.log(event.target);
+    }
+
     render() {
         const SearchWrapper = styled.div`
             display: flex;
@@ -14,8 +20,8 @@ class SearchPage extends Component {
             <div>
                 <SearchWrapper>
                 <p>Search by wall</p>
-                <form>
-                    <select name="gym-location">
+                <form onSubmit={this._searchByWall}>
+                    <select name="gym-location" >
                         <option value="mg"> Main Gym </option>
                         <option value="pr"> Party Room </option>
                     </select>
