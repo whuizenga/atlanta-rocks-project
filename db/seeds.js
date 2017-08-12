@@ -252,7 +252,7 @@ const route38 = new Route({
     difficulty: "5.9+",
     setBy: "Jason",
 })
-const route39 = new Route({
+const route100 = new Route({
     wall: "MG12",
     color: "Green",
     difficulty: "5.10+",
@@ -564,7 +564,7 @@ const route87= new Route({
     difficulty: "5.10+",
     setBy: "Lisa",
 })
-const route87= new Route({
+const route101= new Route({
     wall: "MG28",
     color: "White/Blue/Purple",
     difficulty: "5.7+",
@@ -606,7 +606,7 @@ const route93= new Route({
     difficulty: "5.9",
     setBy: "Jason",
 })
-const route93= new Route({
+const route102= new Route({
     wall: "MG30",
     color: "Red",
     difficulty: "5.7-",
@@ -760,6 +760,9 @@ route96.save().then(()=> console.log("Route Saved!"));
 route97.save().then(()=> console.log("Route Saved!"));
 route98.save().then(()=> console.log("Route Saved!"));
 route99.save().then(()=> console.log("Route Saved!"));
+route100.save().then(()=> console.log("Route Saved!"));
+route101.save().then(()=> console.log("Route Saved!"));
+route102.save().then(()=> console.log("Route Saved!"));
 
 
 
