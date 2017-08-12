@@ -97,7 +97,7 @@ class App extends Component {
                 loggedIn={this.state.loggedIn}
                 username={this.state.username}
                 />} />
-          <Route exact page="/signup" component={SignupScreen} />
+          <Route exact path="/signup" component={SignupScreen} />
           <Route exact path="/user/:username" render={routeProps => 
               <UserPage {...routeProps}
               loggedIn = {this.state.loggedIn}
