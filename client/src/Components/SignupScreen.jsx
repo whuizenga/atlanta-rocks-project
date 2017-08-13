@@ -23,6 +23,9 @@ class SignupScreen extends Component {
         }    
     }
     render() {
+        if(this.props.loggedIn){
+            return <Redirect to={`/user/${this.props.username}`} />
+        } else {
         return (
             <div>
             {this.state.doPasswordsMatch ? null : <p>passwords don't match</p>}
@@ -43,7 +46,7 @@ class SignupScreen extends Component {
                 </form>
             </div>
         );
-    }
+    }}
 }
 
 export default SignupScreen;

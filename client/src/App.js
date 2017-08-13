@@ -114,6 +114,7 @@ class App extends Component {
           <Route exact path="/signup" render={routeProps => 
               <SignupScreen {...routeProps}
                 handleSignup={this._handleSignup}
+                loggedIn={this.state.loggedIn}
                 />} />
           <Route exact path="/user/:username" render={routeProps => 
               <UserPage {...routeProps}
