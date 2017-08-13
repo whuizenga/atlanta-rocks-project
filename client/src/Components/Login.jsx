@@ -12,7 +12,7 @@ class Login extends Component {
         return (
             <div>
                 <LoginWrapper>
-                    {loggedIn ? <p> Welcome back, {this.props.firstName}</p> : null }
+                    {loggedIn ? <p> Welcome back, <Link to={`/user/${this.props.username}`}> {this.props.firstName} </Link> </p> : null }
 
                     <div onClick={this.props.handleLogout}>
                         {loggedIn ? <Link to="/">Log out</Link> : <Link to="/login">Log in</Link>}

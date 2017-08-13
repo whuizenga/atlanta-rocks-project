@@ -94,7 +94,7 @@ class App extends Component {
       <div>
         <NavBar>
           <Link to="/">Home</Link>
-          <LoginButton loggedIn = {this.state.loggedIn}  handleLogout={this._handleLogout} firstName={this.state.firstName}/>
+          <LoginButton loggedIn = {this.state.loggedIn}  handleLogout={this._handleLogout} firstName={this.state.firstName} username={this.state.username}/>
         </NavBar>
       </div>
       <div>

@@ -8,9 +8,13 @@ class UserPage extends Component {
         } else {
         return (
             <div>
-                <p>This is your page!</p>
-
-                <p>This part will be a reach goal...</p>
+                component that shows user information
+                <br />
+                button that takes me to search
+                <br />
+                component that shows latest climbs
+                <br />
+                component that shows latest notes
             </div>
         );}
     }
