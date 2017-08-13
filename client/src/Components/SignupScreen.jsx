@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 
 class SignupScreen extends Component {
+    _handleSignUp = (event) => {
+        event.preventDefault();
+
+        console.log(event.target.username.value);
+        console.log(event.target.password.value);
+        console.log(event.target.passwordConfirm.value);
+    }
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this._handleSignUp}>
                     <div>
                         <label htmlFor="username">Username: </label>
                         <input name="username" type="text" placeholder="username" />
