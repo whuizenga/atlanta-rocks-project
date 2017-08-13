@@ -17,6 +17,8 @@ class UserPage extends Component {
                 component that shows latest climbs
                 <br />
                 component that shows latest notes
+                <br />
+                A place to delete your account.
             </div>
         );}
     }
