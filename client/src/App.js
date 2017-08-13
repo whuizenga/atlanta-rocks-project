@@ -52,6 +52,21 @@ class App extends Component {
         console.log(err);
       })
   }
+
+  _handleSignup = (username, password) => {
+    axios.post('/api/signup/', {username, password})
+      .then((res) => {
+        const newState = {...this.state};
+          newState.userId = res.data._id;
+          newState.loggedIn = true;
+          newState.username = res.data.username;
+          newState.firstName = res.data.firstName;
+          newState.loginError = "";
+
+          this.setState(newState);
+        })
+  }
+  
   _handleLogout = (event) => {
       const newState = {...this.state};
       newState.username = "";

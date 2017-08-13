@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 class SignupScreen extends Component {
@@ -9,7 +10,7 @@ class SignupScreen extends Component {
             doPasswordsMatch: true,
         }
     }
-    _handleSignUp = (event) => {
+    _handlePasswordConfirm = (event) => {
         event.preventDefault();
 
         const username = event.target.username.value;
@@ -19,16 +20,14 @@ class SignupScreen extends Component {
         if(password !== passwordConfirm){
             this.setState({doPasswordsMatch: false})
         } else {
-
-        }
-
-        
+            
+        }    
     }
     render() {
         return (
             <div>
             {this.state.doPasswordsMatch ? null : <p>passwords don't match</p>}
-                <form onSubmit={this._handleSignUp}>
+                <form onSubmit={this._handlePasswordConfirm>
                     <div>
                         <label htmlFor="username">Username: </label>
                         <input name="username" type="text" placeholder="username" required/>
