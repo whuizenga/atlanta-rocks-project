@@ -32,6 +32,8 @@ const UserSchema = mongoose.Schema({
     password: String,
     admin: Boolean,
     birthday: Date,
+    created_date: Date,
+    updated_date: Date,
 });
 
 RouteSchema.pre('save', function(next){
@@ -48,6 +50,11 @@ RouteSchema.pre('save', function(next){
 UserSchema.pre('save', function(next){
     if(!this.admin){
         this.admin = false;
+    }
+    const now = new Date();
+    this.updated_date = now;
+    if (!this.created_date) {
+        this.created_date = now;
     }
     next();
 })

@@ -10,6 +10,12 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/:id", (req, res) => {
+    User.findById(req.params.id).then((user) => {
+        res.json(user);
+    });
+});
+
 router.post("/login/", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
