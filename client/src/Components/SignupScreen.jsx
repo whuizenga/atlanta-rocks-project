@@ -4,9 +4,13 @@ class SignupScreen extends Component {
     _handleSignUp = (event) => {
         event.preventDefault();
 
-        console.log(event.target.username.value);
-        console.log(event.target.password.value);
-        console.log(event.target.passwordConfirm.value);
+        const username = event.target.username.value;
+        const password = event.target.password.value;
+        const passwordConfirm = event.target.passwordConfirm.value;
+
+        console.log(username);
+        console.log(password);
+        console.log(passwordConfirm);
     }
     render() {
         return (
