@@ -6,11 +6,13 @@ class UserInformation extends Component {
         super();
         this.state = {
             editName: false,
+            editPassword: false,
             username: "",
             firstName: "",
             lastName: "",
             joinDate: "",
             admin: false,
+            updatePasswordError: "",
         }
     }
     componentWillMount() {
@@ -35,24 +37,63 @@ class UserInformation extends Component {
 
         this.setState(newState);
     }
+    _togglePasswordForm = () => {
+        const newState = {...this.state};
+        newState.editPassword = !this.state.editPassword;
+
+        this.setState(newState);
+    }
+    _updatePassword = (event) => {
+        event.preventDefault();
+
+        const oldPassword = event.target.oldPassword.value;
+        const newPassword = event.target.newPassword.value;
+        const newPasswordConfirm = event.target.newPasswordConfirm.value;
+
+        if (!(newPassword === newPasswordConfirm)){
+            console.log("passwords do not match");
+            const newState = {...this.state};
+            newState.updatePasswordError = "passwords do not match"
+            this.setState(newState);
+        } else {
+        axios.put("/api/user/updatepassword").then((res) =>{
+            console.log(res);
+        })}
+    }
     render() {
         return (
             <div>
                 <p>username: {this.state.admin ? `[ADMIN]:` : null}{this.state.username}</p>
                 <p>{`Name: ${this.state.firstName} ${this.state.lastName}`}</p>
+                <button onClick={this._toggleEditForm}>{this.state.editName ? "hide" : "edit"}</button>
                 <form>
                     {this.state.editName ?  
-                        <input type="text" placeholder={this.state.firstName}/>
+                        <input name="firstName" type="text" placeholder={this.state.firstName}/>
                         : null}
                     {this.state.editName ?  
-                        <input type="text" placeholder={this.state.lastName}/>
+                        <input name="lastName" type="text" placeholder={this.state.lastName}/>
                         : null}
                     {this.state.editName ?  
                         <button>update</button>
                         : null}
                 </form>
-                <button onClick={this._toggleEditForm}>{this.state.editName ? "hide" : "edit"}</button>
                 <p>Date joined app: {this.state.joinDate}</p>
+                <button onClick={this._togglePasswordForm}>{this.state.editPassword ? "hide":"change password"}</button>
+                <form onSubmit={this._updatePassword}>
+                    {this.state.editPassword ?  
+                        <input type="password" placeholder="old password" name="oldPassword" required/>
+                        : null}
+                    {this.state.editPassword ?  
+                        <input type="password" placeholder="new password" name="newPassword" required/>
+                        : null}
+                    {this.state.editPassword ?  
+                        <input type="password" placeholder="confirm new password" name="newPasswordConfirm" required/>
+                        : null}
+                    {this.state.editPassword ?  
+                        <button>update</button>
+                        : null}
+                </form>
+                {this.state.updatePasswordError ? this.state.updatePasswordError : null}
             </div> 
         );
     }
