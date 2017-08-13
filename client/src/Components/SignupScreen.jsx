@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class SignupScreen extends Component {
+    constructor() {
+        super();
+        
+        this.state={
+            doPasswordsMatch: true,
+        }
+    }
     _handleSignUp = (event) => {
         event.preventDefault();
 
@@ -8,25 +16,30 @@ class SignupScreen extends Component {
         const password = event.target.password.value;
         const passwordConfirm = event.target.passwordConfirm.value;
 
-        console.log(username);
-        console.log(password);
-        console.log(passwordConfirm);
+        if(password !== passwordConfirm){
+            this.setState({doPasswordsMatch: false})
+        } else {
+
+        }
+
+        
     }
     render() {
         return (
             <div>
+            {this.state.doPasswordsMatch ? null : <p>passwords don't match</p>}
                 <form onSubmit={this._handleSignUp}>
                     <div>
                         <label htmlFor="username">Username: </label>
-                        <input name="username" type="text" placeholder="username" />
+                        <input name="username" type="text" placeholder="username" required/>
                     </div>
                     <div>
                         <label htmlFor="password">Password: </label>
-                        <input name="password" type="password"/>
+                        <input name="password" type="password" required/>
                     </div>
                     <div>
                         <label htmlFor="passwordConfirm">Confirm password:</label>
-                        <input name="passwordConfirm" type="password"/>
+                        <input name="passwordConfirm" type="password" required/>
                     </div>
                     <button>Sign up</button>
                 </form>
