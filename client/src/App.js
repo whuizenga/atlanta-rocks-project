@@ -54,7 +54,7 @@ class App extends Component {
   }
 
   _handleSignup = (username, password) => {
-    axios.post('/api/signup/', {username, password})
+    axios.post('/api/user/signup/', {username, password})
       .then((res) => {
         const newState = {...this.state};
           newState.userId = res.data._id;
