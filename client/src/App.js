@@ -119,6 +119,7 @@ class App extends Component {
           <Route exact path="/user/:username" render={routeProps => 
               <UserPage {...routeProps}
                 loggedIn = {this.state.loggedIn}
+                userId = {this.state.userId}
                 />} /> 
           <Route exact path="/wall/:wallId" render={routeProps => 
               <ShowWall {...routeProps}

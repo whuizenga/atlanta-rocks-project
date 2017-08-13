@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+
+import UserInformation from './UserInformation';
 
 class UserPage extends Component {
     render() {
@@ -8,9 +10,9 @@ class UserPage extends Component {
         } else {
         return (
             <div>
-                component that shows user information
+                <UserInformation userId={this.props.userId} />
                 <br />
-                button that takes me to search
+                <Link to="/search">Find a route</Link>
                 <br />
                 component that shows latest climbs
                 <br />
