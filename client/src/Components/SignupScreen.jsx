@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
 
 class SignupScreen extends Component {
     constructor() {
@@ -20,14 +19,14 @@ class SignupScreen extends Component {
         if(password !== passwordConfirm){
             this.setState({doPasswordsMatch: false})
         } else {
-            
+            this.props.handleSignup(username, password);
         }    
     }
     render() {
         return (
             <div>
             {this.state.doPasswordsMatch ? null : <p>passwords don't match</p>}
-                <form onSubmit={this._handlePasswordConfirm>
+                <form onSubmit={this._handlePasswordConfirm}>
                     <div>
                         <label htmlFor="username">Username: </label>
                         <input name="username" type="text" placeholder="username" required/>
@@ -40,7 +39,7 @@ class SignupScreen extends Component {
                         <label htmlFor="passwordConfirm">Confirm password:</label>
                         <input name="passwordConfirm" type="password" required/>
                     </div>
-                    <button>Sign up</button>
+                        <button>Sign up</button>
                 </form>
             </div>
         );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -98,7 +98,6 @@ class App extends Component {
         </NavBar>
       </div>
       <div>
-        <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/search" render={routeProps => 
               <SearchPage {...routeProps}
@@ -112,21 +111,22 @@ class App extends Component {
                 loggedIn={this.state.loggedIn}
                 username={this.state.username}
                 />} />
-          <Route exact path="/signup" component={SignupScreen} />
+          <Route exact path="/signup" render={routeProps => 
+              <SignupScreen {...routeProps}
+                handleSignup={this._handleSignup}
+                />} />
           <Route exact path="/user/:username" render={routeProps => 
               <UserPage {...routeProps}
-              loggedIn = {this.state.loggedIn}
-              />} /> 
+                loggedIn = {this.state.loggedIn}
+                />} /> 
           <Route exact path="/wall/:wallId" render={routeProps => 
               <ShowWall {...routeProps}
-              routeSearch = {this.state.routeSearch}
-              />} />
+                routeSearch = {this.state.routeSearch}
+                />} />
           <Route exact path="/difficulty/:diffId" render={routeProps =>
               <ShowDifficulty {...routeProps}
-              routeSearch = {this.state.routeSearch}
-              />} />
-        </Switch>
-
+                routeSearch = {this.state.routeSearch}
+                />} />
       </div>
       </div>
       </Router>
