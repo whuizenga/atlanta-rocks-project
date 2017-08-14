@@ -70,7 +70,7 @@ class UserInformation extends Component {
                 <p>username: {this.state.admin ? `[ADMIN]:` : null}{this.state.username}</p>
                 <p>{`Name: ${this.state.firstName} ${this.state.lastName}`}</p>
                 <button onClick={this._toggleEditForm}>{this.state.editName ? "hide" : "edit"}</button>
-                <form>
+                <form onSubmit={this.props.updateName}>
                     {this.state.editName ?  
                         <input name="firstName" type="text" placeholder={this.state.firstName}/>
                         : null}

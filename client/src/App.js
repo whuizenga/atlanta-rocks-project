@@ -75,6 +75,7 @@ class App extends Component {
       console.log(err);
     })
   }
+
   _handleLogout = (event) => {
       const newState = {...this.state};
       newState.username = "";
@@ -89,6 +90,13 @@ class App extends Component {
     const newState = {...this.state};
     newState.routeSearch = searchParam;
     this.setState(newState);
+  }
+
+  _updateUserName = (event) => {
+    event.preventDefault();
+
+    console.log(event.target.firstName.value);
+    console.log(event.target.lastName.value);
   }
   render() {
     const NavBar = styled.div`
@@ -129,6 +137,7 @@ class App extends Component {
                 loggedIn = {this.state.loggedIn}
                 userId = {this.state.userId}
                 deleteUser = {this._handleDeleteUser}
+                updateName = {this._updateUserName}
                 />} /> 
           <Route exact path="/wall/:wallId" render={routeProps => 
               <ShowWall {...routeProps}

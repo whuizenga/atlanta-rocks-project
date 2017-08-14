@@ -11,7 +11,9 @@ class UserPage extends Component {
         } else {
         return (
             <div>
-                <UserInformation userId={this.props.userId} />
+                <UserInformation 
+                    userId={this.props.userId}
+                    updateName={this.props.updateName} />
                 <br />
                 <Link to="/search">Find a route</Link>
                 <br />
