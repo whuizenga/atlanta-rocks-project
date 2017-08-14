@@ -11,7 +11,7 @@ class ShowRoute extends Component {
 
     componentWillMount() {
         console.log("starting axios call");
-        axios.get(`api/route/${this.props.match.params.routeId}`).then((res) => {
+        axios.get(`/api/route/${this.props.match.params.routeId}`).then((res) => {
             console.log(res);
         }).catch((err) => {
             console.log(err);
