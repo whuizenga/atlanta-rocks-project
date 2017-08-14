@@ -53,10 +53,22 @@ router.post("/signup", (req, res) => {
 })
 
 router.put("/:id/password", (req, res) => {
-    console.log(req.body.newPassword);
-    console.log(req.body.oldPassword);
+    const newPassword = req.body.newPassword;
+    const oldPassword = req.body.oldPassword;
     User.findByIdAndUpdate(req.params.id).then((user) => {
-        
-    })
-})
+        console.log("starting password update")
+        console.log("current pass: "+user.password);
+        console.log("old pass: "+oldPassword);
+        if(user.password === oldPassword){
+            user.password = newPassword;
+            user.save();
+            res.send("password saved");
+            consle.log(`user: ${user.username} updated their password`);
+        } else {
+            res.send("password incorrect");
+        }
+    }).catch((err) => {
+        console.log(err);
+    });
+});
 module.exports = router;
