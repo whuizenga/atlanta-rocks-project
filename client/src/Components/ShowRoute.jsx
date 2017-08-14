@@ -47,7 +47,7 @@ class ShowRoute extends Component {
                 <h3>{this.state.color}</h3>
                 <p>Set by: {this.state.setBy}</p>
 
-                <RouteRating userId={this.state.userId} ratings={this.state.ratings}/>
+                <RouteRating userId={this.state.userId} ratings={this.state.ratings} routeId={this.props.match.params.routeId}/>
 
                 CreateNewCommentComponent<br />
                 CommentsListComponent

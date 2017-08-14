@@ -42,4 +42,15 @@ router.get('/difficultySearch/:searchParam', (req, res) => {
     })
 });
 
+router.put('/rate/:routeId', (req, res) => {
+    const routeId = req.params.routeId;
+    const newRating = req.body.newRating;
+    const newRaterId = req.body.newRaterId;
+    Route.findByIdAndUpdate(routeId).then((route) => {
+        route.ratings.push({rating: newRating, raterId: newRaterId})
+        route.save();
+
+    })
+})
+
 module.exports = router;
