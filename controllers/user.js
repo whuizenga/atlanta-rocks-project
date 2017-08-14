@@ -24,7 +24,7 @@ router.put("/:id/password", (req, res) => {
             user.password = newPassword;
             user.save();
             res.send("password saved");
-            consle.log(`user: ${user.username} updated their password`);
+            console.log(`user: ${user.username} updated their password`);
         } else {
             res.send("password incorrect");
         }
@@ -32,6 +32,21 @@ router.put("/:id/password", (req, res) => {
         console.log(err);
     });
 });
+
+router.put("/:id/name", (req, res) => {
+    const userId=req.params.id;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    User.findByIdAndUpdate(userId).then((user) => {
+        user.firstName = firstName;
+        user.lastName = lastName;
+        user.save();
+        res.send("name updated");
+        console.log(`user: ${user.username} updated their name`);
+    }).catch((err) => {
+        console.log(err);
+    })
+})
 
 router.get("/:id/delete", (req, res) => {
     const userId = req.params.id;
@@ -43,6 +58,7 @@ router.get("/:id/delete", (req, res) => {
         console.log(err);
     })
 })
+
 router.post("/login/", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
