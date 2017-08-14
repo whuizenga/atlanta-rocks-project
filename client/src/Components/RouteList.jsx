@@ -5,7 +5,7 @@ class RouteList extends Component {
     render() {
     const route = this.props.route;
     const creationDate = new Date(route.date_set);
-    const monthSet = creationDate.getMonth();
+    const monthSet = creationDate.getMonth()+1;
     const daySet = creationDate.getDate();
     const yearSet = creationDate.getFullYear();
 
@@ -39,7 +39,7 @@ class RouteList extends Component {
                         <h1>{route.difficulty}</h1>
                     </div>
                     <div>
-                        <p>Set by:{route.setBy}</p>
+                        <p>Set by: {route.setBy}</p>
                         <p>Set on: {monthSet}/{daySet}/{yearSet}</p>
                     </div>
              

@@ -155,7 +155,10 @@ class App extends Component {
               <ShowDifficulty {...routeProps}
                 routeSearch = {this.state.routeSearch}
                 />} />
-          <Route exact path="/route/:routeId" component={ShowRoute} />
+          <Route exact path="/route/:routeId" render={routeProps => 
+              <ShowRoute {...routeProps}
+                userId = {this.state.userId}
+                />} />
       </div>
       </div>
       </Router>
