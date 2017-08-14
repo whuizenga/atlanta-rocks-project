@@ -68,6 +68,11 @@ class UserInformation extends Component {
     _updateName = (event) => {
         event.preventDefault();
 
+        const firstName = event.target.firstName.value;
+        const lastName = event.target.lastName.value;
+
+        this.props.updateName(firstName, lastName);
+
         const newState ={...this.state};
         newState.editName = false;
         this.setState(newState); 
@@ -78,7 +83,7 @@ class UserInformation extends Component {
                 <p>username: {this.state.admin ? `[ADMIN]:` : null}{this.state.username}</p>
                 <p>{`Name: ${this.props.firstName} ${this.props.lastName}`}</p>
                 <button onClick={this._toggleEditForm}>{this.state.editName ? "hide" : "edit"}</button>
-                <form onSubmit={this.props.updateName}>
+                <form onSubmit={this._updateName}>
                     {this.state.editName ?  
                         <input name="firstName" type="text" placeholder={this.props.firstName}/>
                         : null}

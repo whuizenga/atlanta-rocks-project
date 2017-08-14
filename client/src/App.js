@@ -95,12 +95,7 @@ class App extends Component {
     this.setState(newState);
   }
 
-  _updateUserName = (event) => {
-    event.preventDefault();
-
-    const firstName = event.target.firstName.value;
-    const lastName = event.target.lastName.value;
-
+  _updateUserName = (firstName, lastName) => {
     axios.put(`/api/user/${this.state.userId}/name`, {firstName, lastName}).then((res) => {
       const newState = {...this.state};
       newState.firstName = firstName;
