@@ -13,7 +13,9 @@ class UserPage extends Component {
             <div>
                 <UserInformation 
                     userId={this.props.userId}
-                    updateName={this.props.updateName} />
+                    updateName={this.props.updateName}
+                    firstName={this.props.firstName}
+                    lastName={this.props.lastName} />
                 <br />
                 <Link to="/search">Find a route</Link>
                 <br />

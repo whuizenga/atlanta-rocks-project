@@ -64,18 +64,26 @@ class UserInformation extends Component {
             this.setState(newState);
         })}
     }
+
+    _updateName = (event) => {
+        event.preventDefault();
+
+        const newState ={...this.state};
+        newState.editName = false;
+        this.setState(newState); 
+    }
     render() {
         return (
             <div>
                 <p>username: {this.state.admin ? `[ADMIN]:` : null}{this.state.username}</p>
-                <p>{`Name: ${this.state.firstName} ${this.state.lastName}`}</p>
+                <p>{`Name: ${this.props.firstName} ${this.props.lastName}`}</p>
                 <button onClick={this._toggleEditForm}>{this.state.editName ? "hide" : "edit"}</button>
                 <form onSubmit={this.props.updateName}>
                     {this.state.editName ?  
-                        <input name="firstName" type="text" placeholder={this.state.firstName}/>
+                        <input name="firstName" type="text" placeholder={this.props.firstName}/>
                         : null}
                     {this.state.editName ?  
-                        <input name="lastName" type="text" placeholder={this.state.lastName}/>
+                        <input name="lastName" type="text" placeholder={this.props.lastName}/>
                         : null}
                     {this.state.editName ?  
                         <button>update</button>

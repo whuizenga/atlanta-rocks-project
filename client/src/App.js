@@ -20,6 +20,7 @@ class App extends Component {
             userId: "",
             username: "",
             firstName: "",
+            lastName: "",
             loginError: "",
             routeSearch: "",
         }
@@ -41,6 +42,7 @@ class App extends Component {
           newState.loggedIn = true;
           newState.username = res.data.username;
           newState.firstName = res.data.firstName;
+          newState.lastName = res.data.lastName;
           newState.loginError = "";
         } else {
           newState.loginError = res.data;
@@ -80,6 +82,7 @@ class App extends Component {
       const newState = {...this.state};
       newState.username = "";
       newState.firstName = "";
+      newState.lastName = "";
       newState.loginError = "";
       newState.loggedIn = false;
 
@@ -95,8 +98,15 @@ class App extends Component {
   _updateUserName = (event) => {
     event.preventDefault();
 
-    console.log(event.target.firstName.value);
-    console.log(event.target.lastName.value);
+    const firstName = event.target.firstName.value;
+    const lastName = event.target.lastName.value;
+
+    axios.put(`/api/user/${this.state.userId}/name`, {firstName, lastName}).then((res) => {
+      const newState = {...this.state};
+      newState.firstName = firstName;
+      newState.lastName = lastName;
+      this.setState(newState);
+    })
   }
   render() {
     const NavBar = styled.div`
@@ -138,6 +148,8 @@ class App extends Component {
                 userId = {this.state.userId}
                 deleteUser = {this._handleDeleteUser}
                 updateName = {this._updateUserName}
+                firstName={this.state.firstName}
+                lastName={this.state.lastName}
                 />} /> 
           <Route exact path="/wall/:wallId" render={routeProps => 
               <ShowWall {...routeProps}
