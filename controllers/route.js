@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     Route.findById(req.params.id).then((route) => {
-        console.log(route);
         res.json(route);
     }).catch((err) => {
         console.log(err);
@@ -19,7 +18,6 @@ router.get('/:id', (req, res) => {
 
 router.get('/wallSearch/:searchParam', (req, res) => {
     const searchParam = req.params.searchParam;
-    console.log(searchParam);
     Route.find().then((routes) => {
         const matchingRoutes = routes.filter((route) => {
             return route.wall === searchParam;
@@ -32,7 +30,6 @@ router.get('/wallSearch/:searchParam', (req, res) => {
 
 router.get('/difficultySearch/:searchParam', (req, res) => {
     const searchParam = req.params.searchParam;
-    console.log(searchParam);
     Route.find().then((routes) => {
         const matchingRoutes = routes.filter((route) => {
             return  (route.difficulty === searchParam) || 
