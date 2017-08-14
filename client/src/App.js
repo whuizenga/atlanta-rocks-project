@@ -11,6 +11,7 @@ import SignupScreen from './Components/SignupScreen.jsx';
 import UserPage from './Components/UserPage.jsx';
 import ShowWall from './Components/ShowWall.jsx';
 import ShowDifficulty from './Components/ShowDifficulty.jsx';
+import ShowRoute from './Components/ShowRoute';
 
 class App extends Component {
   constructor(){
@@ -154,6 +155,7 @@ class App extends Component {
               <ShowDifficulty {...routeProps}
                 routeSearch = {this.state.routeSearch}
                 />} />
+          <Route exact path="/route/:routeId" component={ShowRoute} />
       </div>
       </div>
       </Router>

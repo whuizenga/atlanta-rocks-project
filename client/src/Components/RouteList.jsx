@@ -29,18 +29,20 @@ class RouteList extends Component {
     
         return ( 
             <RouteWrapper>
-            {this.props.displayWall ?
-            <div>
-                <h1>{route.wall}</h1>
-            </div>
-            : null}
-            <div>
-                <h1>{route.difficulty}</h1>
-            </div>
-            <div>
-                <p>Set by:{route.setBy}</p>
-                <p>Set on: {monthSet}/{daySet}/{yearSet}</p>
-            </div>
+
+                    {this.props.displayWall ?
+                    <div>
+                        <h1>{route.wall}</h1>
+                    </div>
+                    : null}
+                    <div>
+                        <h1>{route.difficulty}</h1>
+                    </div>
+                    <div>
+                        <p>Set by:{route.setBy}</p>
+                        <p>Set on: {monthSet}/{daySet}/{yearSet}</p>
+                    </div>
+             
             </RouteWrapper>   
         );
     }

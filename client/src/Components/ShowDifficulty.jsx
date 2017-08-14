@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -18,7 +19,6 @@ class ShowWall extends Component {
 
         axios.get(`/api/route/difficultySearch/${searchParam}`)
             .then((res) => {
-                console.log(res.data)
                 const newState = {...this.state};
                 newState.routes = res.data;
                 newState.difficulty = searchParam;
@@ -32,6 +32,10 @@ class ShowWall extends Component {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            a {
+                text-decoration: none;
+                color: black;
+            }
         `
         return (
             <div>
@@ -40,9 +44,9 @@ class ShowWall extends Component {
 
                 {this.state.routes.map((route, index) => {
                     if(!route.date_retired){
-                    return <RouteList key={index}
+                    return <Link to={`/route/${route._id}` } key={index}><RouteList key={index}
                             route={route}
-                            displayWall={true}/>
+                            displayWall={true}/></Link>
                 } else {
                     return null;
                 }})}
