@@ -46,8 +46,10 @@ router.put('/rate/:routeId', (req, res) => {
     const routeId = req.params.routeId;
     const newRating = req.body.newRating;
     const newRaterId = req.body.newRaterId;
+
+    console.log(newRaterId);
     Route.findByIdAndUpdate(routeId).then((route) => {
-        route.ratings.push({rating: newRating, raterId: newRaterId})
+        route.ratings.push({raterId: newRaterId, rating: newRating })
         route.save();
 
     })

@@ -34,15 +34,24 @@ class RouteRating extends Component {
     }
     _calculateAverageRating = () => {
         const ratings = this.props.ratings;
+        if(ratings.length > 0){
+            let sum = 0;
+            for(var i = 0; i < ratings.length; i++){
+                sum += ratings[i].rating
+            }
+            let average = sum/ratings.length;
 
-        console.log("get average")
+            const newState = {...this.state};
+            newState.averageRating = average;
+            this.setState(newState);
+        }
     }
     _handleSubmit = (event) => {
         event.preventDefault();
 
         const newRating = event.target.rating.value;
-        const newRaterId = this.state.userId;
-
+        const newRaterId = this.props.userId;
+    
         axios.put(`/api/route/rate/${this.props.routeId}`, {newRating, newRaterId}).then((res) => {
             const newState = {...this.state};
             newState.ratings.push({raterId: newRaterId, rating: newRating})
@@ -51,13 +60,13 @@ class RouteRating extends Component {
         this._calculateAverageRating();
     }
     render() {
-        // if(!this.state.userId){
-        //     return(
-        //         <div>
-        //             <p>Average Rating: {this.state.averageRating}</p>
-        //         </div>
-        //     )
-        // } else {
+        if(!this.props.userId){
+            return(
+                <div>
+                    <p>Average Rating: {this.state.averageRating}</p>
+                </div>
+            )
+        } else {
             return (
                 <div>
                     {this.state.userHasRated ? 
@@ -72,6 +81,6 @@ class RouteRating extends Component {
                 </div>
         );
     }}
-// }
+}
 
 export default RouteRating;
