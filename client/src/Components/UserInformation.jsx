@@ -59,7 +59,6 @@ class UserInformation extends Component {
             this.setState(newState);
         } else {
         axios.put(`/api/user/${this.state.userId}/password/`, {oldPassword, newPassword}).then((res) =>{
-            console.log(res);
             const newState = {...this.state};
             newState.updatePasswordError = res.data;
             this.setState(newState);

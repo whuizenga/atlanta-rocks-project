@@ -56,9 +56,6 @@ router.put("/:id/password", (req, res) => {
     const newPassword = req.body.newPassword;
     const oldPassword = req.body.oldPassword;
     User.findByIdAndUpdate(req.params.id).then((user) => {
-        console.log("starting password update")
-        console.log("current pass: "+user.password);
-        console.log("old pass: "+oldPassword);
         if(user.password === oldPassword){
             user.password = newPassword;
             user.save();
