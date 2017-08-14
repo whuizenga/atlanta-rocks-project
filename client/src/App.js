@@ -67,6 +67,14 @@ class App extends Component {
         })
   }
   
+  _handleDeleteUser = () => {
+    axios.get(`/api/user/${this.state.userId}/delete`).then(() => {
+      this._handleLogout();
+    }).catch((err) => {
+      console.log("error sending delete");
+      console.log(err);
+    })
+  }
   _handleLogout = (event) => {
       const newState = {...this.state};
       newState.username = "";
@@ -120,6 +128,7 @@ class App extends Component {
               <UserPage {...routeProps}
                 loggedIn = {this.state.loggedIn}
                 userId = {this.state.userId}
+                deleteUser = {this._handleDeleteUser}
                 />} /> 
           <Route exact path="/wall/:wallId" render={routeProps => 
               <ShowWall {...routeProps}

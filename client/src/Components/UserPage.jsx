@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
 import UserInformation from './UserInformation';
+import DeleteUser from './DeleteUser';
 
 class UserPage extends Component {
     render() {
@@ -18,7 +19,7 @@ class UserPage extends Component {
                 <br />
                 component that shows latest notes
                 <br />
-                A place to delete your account.
+                <DeleteUser deleteUser={this.props.deleteUser}/>
             </div>
         );}
     }
