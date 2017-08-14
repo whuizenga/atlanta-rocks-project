@@ -7,6 +7,7 @@ class UserInformation extends Component {
         this.state = {
             editName: false,
             editPassword: false,
+            userId: "",
             username: "",
             firstName: "",
             lastName: "",
@@ -25,6 +26,7 @@ class UserInformation extends Component {
             newState.joinDate = res.data.created_date
             newState.username = res.data.username;
             newState.admin = res.data.admin;
+            newState.userId = userId;
 
             this.setState(newState);
         });
@@ -56,7 +58,7 @@ class UserInformation extends Component {
             newState.updatePasswordError = "passwords do not match"
             this.setState(newState);
         } else {
-        axios.put("/api/user/updatepassword").then((res) =>{
+        axios.put(`/api/user/${this.state.userId}/password/`, {oldPassword, newPassword}).then((res) =>{
             console.log(res);
         })}
     }

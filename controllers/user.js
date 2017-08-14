@@ -51,4 +51,12 @@ router.post("/signup", (req, res) => {
         console.log(err);
     });
 })
+
+router.put("/:id/password", (req, res) => {
+    console.log(req.body.newPassword);
+    console.log(req.body.oldPassword);
+    User.findByIdAndUpdate(req.params.id).then((user) => {
+        
+    })
+})
 module.exports = router;
