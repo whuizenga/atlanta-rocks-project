@@ -108,6 +108,18 @@ class App extends Component {
     const NavBar = styled.div`
       display: flex;
       justify-content: space-between;
+      color: white;
+      background-color:black;
+      height: 5vh;
+      align-items: center;
+      padding-left: 15px;
+      a {
+        text-decoration: none;
+        color: #7448A1;
+      }
+      a:hover{
+        color: #59387C;
+      }
     `
 
     return (

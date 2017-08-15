@@ -48,7 +48,47 @@ class SearchPage extends Component {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 90vh;
+            height: 95vh;
+            background-image: url("https://s-media-cache-ak0.pinimg.com/originals/45/8b/7c/458b7c24586e8a9bbe31e8f20722bb04.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fill;
+            background-position: center;
+            background-size: cover;
+        `
+        const SearchFormWrapper = styled.div`
+            display: flex;
+            background-color: white;
+            opacity: 0.8;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid black;
+            padding: 30px;
+            height: 250px;
+            width: 250px;
+            p{
+                font-size: 30px;
+                margin: 0;
+            }
+            select{
+                font-size: 24px;
+                text-align: center;
+            }
+            input{
+                height: 60px;
+                width: 60px;
+                font-size: 35px;
+                text-align: center;
+                border: none;
+                background-color: #26ad87;
+                padding-left: 15px;
+            }
+            input:focus{
+                border: 3px solid black;
+            }
+            label {
+                font-size: 45px;
+            }
         `
         if(this.state.redirectToDifficulty) {
             return <Redirect to={`/difficulty/${this.state.searchParam}`} />
@@ -56,27 +96,29 @@ class SearchPage extends Component {
             return <Redirect to={`/wall/${this.state.searchParam}`} />
         } else {
         return (
-            <div>
-                <SearchWrapper>
-                <p>Search by wall</p>
+            <SearchWrapper>
+            <SearchFormWrapper>
+                <p>search by wall</p>
                 <form onSubmit={this._searchByWall}>
-                    <select name="gymLocation" >
+                   <div> <select name="gymLocation" >
                         <option value="mg"> Main Gym </option>
                         <option value="pr"> Party Room </option>
-                    </select>
+                    </select></div>
                     <input name="wallNumber" type="number" step="1" min="1" max="32" /> 
                     <div><button>Submit</button></div>
                 </form>
+            </SearchFormWrapper>
 
-                <p>Search by difficulty</p>
+            <SearchFormWrapper>
+            <p>search by difficulty</p>
 
-                <form onSubmit={this._searchByDifficulty}>
-                    <label htmlFor="difficulty">5.</label>
-                    <input name="difficulty" type="number" step="1" min="6" max="13" />
-                    <div><button>Submit</button></div>
-                </form>
-                </SearchWrapper>
-            </div>
+            <form onSubmit={this._searchByDifficulty}>
+                <label htmlFor="difficulty">5.</label>
+                <input name="difficulty" type="number" step="1" min="6" max="13" />
+                <div><button>Submit</button></div>
+            </form>
+            </SearchFormWrapper>
+            </SearchWrapper>
         );}
     }
 }

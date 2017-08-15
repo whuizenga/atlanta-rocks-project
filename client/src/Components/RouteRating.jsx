@@ -16,6 +16,7 @@ class RouteRating extends Component {
         const userId = this.props.userId;
 
         const userRating = ratings.find((rating) => {
+            console.log("found a matching user")
             return rating.raterId === userId;
         });
         if(userRating){
