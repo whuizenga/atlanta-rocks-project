@@ -35,6 +35,7 @@ class ShowRoute extends Component {
             newState.comments = res.data.comments;
             newState.ratings = res.data.ratings;
             newState.userId = this.props.userId;
+            newState.routeId = this.props.match.params.routeId;
             
             this.setState(newState);
         }).catch((err) => {
@@ -51,7 +52,7 @@ class ShowRoute extends Component {
 
                 <RouteRating userId={this.state.userId} ratings={this.state.ratings} routeId={this.props.match.params.routeId}/>
 
-                <CreateNewComment />
+                {this.state.userId ? <CreateNewComment userId={this.state.userId} routeId={this.state.routeId}/> : null}
                 <CommentsList comments={this.state.comments}/>
             </div>
         );
