@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import RouteRating from './RouteRating';
+import CreateNewComment from './CreateNewComment';
+import CommentsList from './CommentsList';
 
 class ShowRoute extends Component {
     constructor(){
@@ -49,8 +51,8 @@ class ShowRoute extends Component {
 
                 <RouteRating userId={this.state.userId} ratings={this.state.ratings} routeId={this.props.match.params.routeId}/>
 
-                CreateNewCommentComponent<br />
-                CommentsListComponent
+                <CreateNewComment />
+                <CommentsList comments={this.state.comments}/>
             </div>
         );
     }

@@ -24,13 +24,10 @@ class RouteRating extends Component {
         const ratings = this.props.ratings;
         const userId = this.props.userId;
 
-        console.log(userId);
-        console.log(ratings);
         const userRating = ratings.find((rating) => {
-            console.log("found a matching user")
             return rating.raterId === userId;
         });
-        console.log(userRating);
+
         if(userRating){
             const newState = {...this.state};
             newState.userHasRated = true;
@@ -102,7 +99,6 @@ class RouteRating extends Component {
                         <input name="rating" type="number" min="1" max="5" step="1" required/>
                         <button>submit</button>
                     </form>}
-                    If user has not yet given this a rating allow them to else show average of all ratings.
                 </div>
         );
     }}
