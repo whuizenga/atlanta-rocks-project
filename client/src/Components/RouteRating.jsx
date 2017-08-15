@@ -78,6 +78,12 @@ class RouteRating extends Component {
             newState.ratings.push({raterId: newRaterId, rating: newRating})
             newState.userHasRated = true;
             this.setState(newState);
+            this._calculateAverageRating();
+            
+        }).catch((err) => {
+            const newState = {...this.state};
+            newState.userHasRated = true;
+            this.setState(newState);
         })
         this._calculateAverageRating();
     }

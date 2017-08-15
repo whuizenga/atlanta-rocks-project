@@ -42,15 +42,36 @@ router.get('/difficultySearch/:searchParam', (req, res) => {
     })
 });
 
+router.put('/comment', (req, res) => {
+    const comment = req.body.comment;
+    const userId = req.body.userId;
+    const routeId = req.body.routeId;
+
+    console.log(routeId);
+
+    Route.findById(routeId).then((route) => {
+        const newComment = {
+            posterId: userId,
+            comment: comment,
+        }
+        route.comments.push(newComment);
+        console.log(route.comments);
+        route.save();
+        res.json(route);
+    }).catch((err) => {
+        console.log(err);
+    })
+})
+
 router.put('/rate/:routeId', (req, res) => {
     const routeId = req.params.routeId;
     const newRating = req.body.newRating;
     const newRaterId = req.body.newRaterId;
 
-    console.log(newRaterId);
-    Route.findByIdAndUpdate(routeId).then((route) => {
+    Route.findById(routeId).then((route) => {
         route.ratings.push({raterId: newRaterId, rating: newRating })
         route.save();
+        res.send("rating saved");
 
     })
 })

@@ -16,11 +16,14 @@ class CreateNewComment extends Component {
     }
 
     _onSubmit = (event) => {
+        event.preventDefault();
         const comment = event.target.comment.value;
         const routeId = this.props.routeId;
+        const userId = this.props.userId;
 
-        axios.post("/api/route/comment", {routeId, comment}).then((res) => {
-            //do I need to do anything here..?
+        console.log(routeId);
+        axios.put("/api/route/comment", {routeId, userId, comment}).then((res) => {
+            
         });
 
     }
@@ -30,8 +33,10 @@ class CreateNewComment extends Component {
                 <button onClick={this._toggleShowComment}>Add a Comment</button>
                 {this.state.showCommentBox ? 
                     <div>
-                        <textarea name="comment" rows="4" cols="50" />
-                        <div><button>Post</button></div>
+                        <form onSubmit={this._onSubmit}>
+                            <textarea name="comment" rows="4" cols="50" />
+                            <div><button>Post</button></div>
+                        </form>
                     </div>
                      : null}
             </div>
