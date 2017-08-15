@@ -4,21 +4,33 @@ import axios from 'axios';
 class RouteRating extends Component {
     constructor() {
         super()
-        this.state ={
+        this.state = {
             userHasRated: false,
             userRating: "",
+            stateHasRatings: false,
             ratings: [],
             averageRating: "not yet rated",
         }
     }
+
     componentWillMount() {
+        this._hasUserRated();
+    }
+
+
+    _hasUserRated = () => {
+        if(this.state.stateHasRatings){
+
         const ratings = this.props.ratings;
         const userId = this.props.userId;
 
+        console.log(userId);
+        console.log(ratings);
         const userRating = ratings.find((rating) => {
             console.log("found a matching user")
             return rating.raterId === userId;
         });
+        console.log(userRating);
         if(userRating){
             const newState = {...this.state};
             newState.userHasRated = true;
@@ -32,9 +44,18 @@ class RouteRating extends Component {
         }
 
         this._calculateAverageRating();
-    }
+    } else {
+        setTimeout(() => {
+            this._hasUserRated();
+        }, 300);
+        setTimeout(() => {
+            this._calculateAverageRating();
+        }, 200);
+
+    }};
     _calculateAverageRating = () => {
         const ratings = this.props.ratings;
+
         if(ratings.length > 0){
             let sum = 0;
             for(var i = 0; i < ratings.length; i++){
@@ -44,6 +65,8 @@ class RouteRating extends Component {
 
             const newState = {...this.state};
             newState.averageRating = average;
+            newState.ratings = ratings;
+            newState.stateHasRatings = true;
             this.setState(newState);
         }
     }
@@ -56,18 +79,19 @@ class RouteRating extends Component {
         axios.put(`/api/route/rate/${this.props.routeId}`, {newRating, newRaterId}).then((res) => {
             const newState = {...this.state};
             newState.ratings.push({raterId: newRaterId, rating: newRating})
+            newState.userHasRated = true;
             this.setState(newState);
         })
         this._calculateAverageRating();
     }
     render() {
-        if(!this.props.userId){
+        if(this.state.userHasRated || !this.props.userId){
             return(
                 <div>
                     <p>Average Rating: {this.state.averageRating}</p>
                 </div>
             )
-        } else {
+        } else if(!this.state.userHasRated){
             return (
                 <div>
                     {this.state.userHasRated ? 

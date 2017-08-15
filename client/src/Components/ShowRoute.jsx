@@ -33,13 +33,13 @@ class ShowRoute extends Component {
             newState.comments = res.data.comments;
             newState.ratings = res.data.ratings;
             newState.userId = this.props.userId;
-
+            
             this.setState(newState);
         }).catch((err) => {
             console.log(err);
         });
     };
-
+    
     render() {
         return (
             <div>

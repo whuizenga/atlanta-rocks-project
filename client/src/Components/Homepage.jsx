@@ -35,10 +35,10 @@ class Homepage extends Component {
                 opacity: 0.7;
                 padding: 20px 30px;
             }
-        `
+        `;
         const FadeInDiv = styled.div`
-            animation: 2s {fadeAnimation};
-        ` 
+            animation: 1s ${fadeAnimation};
+        `;
         return (
             <div>
                 <TitleDiv>
