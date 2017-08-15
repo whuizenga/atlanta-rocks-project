@@ -16,6 +16,12 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.get("/:id/username", (req, res) => {
+    User.findById(req.params.id).then((user) => {
+        res.send(user.username);
+    })
+})
+
 router.put("/:id/password", (req, res) => {
     const newPassword = req.body.newPassword;
     const oldPassword = req.body.oldPassword;
