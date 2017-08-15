@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import { fadeIn } from 'react-animations';
 
 import RouteList from './RouteList';
 
@@ -37,10 +38,14 @@ class ShowWall extends Component {
                 color: black;
             }
         `
+        const fadeAnimation = keyframes`${fadeIn}`
+        const FadeInDiv = styled.div`
+            animation: 1s ${fadeAnimation};
+        `
         return (
             <div>
                 <WallWrapper>
-                <h1>Difficulty {this.state.difficulty}</h1>
+                <FadeInDiv><h1>Difficulty {this.state.difficulty}</h1></FadeInDiv>
 
                 {this.state.routes.map((route, index) => {
                     if(!route.date_retired){
