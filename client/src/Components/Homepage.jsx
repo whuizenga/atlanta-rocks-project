@@ -35,6 +35,9 @@ class Homepage extends Component {
                 opacity: 0.7;
                 padding: 20px 30px;
             }
+            a:hover {
+                opacity: 1;
+            }
         `;
         const FadeInDiv = styled.div`
             animation: 1s ${fadeAnimation};

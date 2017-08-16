@@ -32,6 +32,12 @@ class ShowWall extends Component {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 95vh;
+            background-image: url("https://s-media-cache-ak0.pinimg.com/originals/45/8b/7c/458b7c24586e8a9bbe31e8f20722bb04.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fill;
+            background-position: center;
+            background-size: cover;
             a {
                 text-decoration: none;
                 color: black;

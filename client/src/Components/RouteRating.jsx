@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 class RouteRating extends Component {
     constructor() {
@@ -88,17 +89,23 @@ class RouteRating extends Component {
         this._calculateAverageRating();
     }
     render() {
+        const Rating = styled.p`
+            font-weight: bold;
+            font-size: 25px;
+            display: inline;
+            color: black;
+        `
         if(this.state.userHasRated || !this.props.userId){
             return(
                 <div>
-                    <p>Average Rating: {this.state.averageRating}</p>
+                    <p>Average Rating: <Rating>{this.state.averageRating}</Rating></p>
                 </div>
             )
         } else if(!this.state.userHasRated){
             return (
                 <div>
                     {this.state.userHasRated ? 
-                    <p>Average Rating: {this.state.average}</p> : null  }
+                    <p>Average Rating: <Rating>{this.state.average}</Rating></p> : null  }
                     {this.state.userHadRated ? null :
                     <form onSubmit={this._handleSubmit}>
                         <label htmlFor="rating">Rate: </label>

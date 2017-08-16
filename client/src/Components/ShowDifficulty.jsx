@@ -31,8 +31,12 @@ class ShowWall extends Component {
         const WallWrapper = styled.div`
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
+            min-height: 95vh;
+            background-image: url("https://s-media-cache-ak0.pinimg.com/originals/45/8b/7c/458b7c24586e8a9bbe31e8f20722bb04.jpg");
+            background-size: cover;
+            background-attachment: fixed;
             a {
                 text-decoration: none;
                 color: black;

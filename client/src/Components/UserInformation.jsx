@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 class UserInformation extends Component {
     constructor(){
@@ -78,9 +79,15 @@ class UserInformation extends Component {
         this.setState(newState); 
     }
     render() {
+
+        const StyledUsername = styled.div`
+            font-size: 30px,
+            color: red;
+        `;
+
         return (
             <div>
-                <p>username: {this.state.admin ? `[ADMIN]:` : null}{this.state.username}</p>
+                <StyledUsername><p>username: {this.state.admin ? `[ADMIN]:` : null}{this.state.username}</p></StyledUsername>
                 <p>{`Name: ${this.props.firstName} ${this.props.lastName}`}</p>
                 <button onClick={this._toggleEditForm}>{this.state.editName ? "hide" : "edit"}</button>
                 <form onSubmit={this._updateName}>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 class Comment extends Component {
     constructor(){
@@ -16,11 +17,23 @@ class Comment extends Component {
         })
 }
     render() {
+        const CommentWrapper = styled.div`
+            background-color: white;
+            border-radius: 15px;
+            padding: 15px;
+            p{
+                margin: 0;
+                display: inline;
+            }
+        `
+        const UsernameSytle = styled.p`
+            font-weight: bold;
+        `
         return (
-            <div>
-                <p>@{this.state.username} says:</p>
+            <CommentWrapper>
+                <UsernameSytle>@{this.state.username}:</UsernameSytle>
                 <p>{this.props.comment.comment}</p>
-            </div>
+            </CommentWrapper>
         );
     }
 }
