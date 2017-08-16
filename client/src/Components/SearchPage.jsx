@@ -104,7 +104,7 @@ class SearchPage extends Component {
                         <option value="mg"> Main Gym </option>
                         <option value="pr"> Party Room </option>
                     </select></div>
-                    <input name="wallNumber" type="number" step="1" min="1" max="32" /> 
+                    <div><input name="wallNumber" type="number" step="1" min="1" max="32" /> </div>
                     <div><button>Submit</button></div>
                 </form>
             </SearchFormWrapper>
