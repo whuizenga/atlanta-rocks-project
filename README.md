@@ -14,6 +14,10 @@ Eventually I would like to add the ability to have users add climbs to their acc
 
 https://marvelapp.com/4feh93d
 
+### ERD
+
+https://goo.gl/photos/2FAHV46u81F4W4DZ9
+
 ### Trello
 
 https://trello.com/b/r0hjVEWU/wdi-project-3
