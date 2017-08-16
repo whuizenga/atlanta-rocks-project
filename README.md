@@ -2,7 +2,7 @@
 
 Created by: William Huizenga
 
-Atlanta Rocks is owned by Atlanta Rocks! and I have no affiliation with them.
+Atlanta Rocks is owned by Atlanta Rocks! Inc, and I have no affiliation with them.
 
 ### Project Description
 Currently at Atlanta Rocks all the routes and difficulties are printed on paper and laid around the gym. I decided to make an app that would allow a user to access that information from the palm of their hand. I also wanted to make it a little more social with comment features.
