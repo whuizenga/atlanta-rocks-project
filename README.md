@@ -1,6 +1,7 @@
 # atlanta-rocks-project
 
 Created by: William Huizenga
+
 Atlanta Rocks is owned by Atlanta Rocks! and I have no affiliation with them.
 
 ### Project Description
