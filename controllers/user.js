@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const UserSession = require('../models/userSession');
 const router = express.Router()
+const { authenticateUser } = require('./authenticateUser');
 
 //new user registration
 router.post('/', (req, res) => {
@@ -209,35 +210,9 @@ router.get('/validate_token', (req, res) => {
     })
 });
 
-//Authenticate User
-authenticateUser = (headers) => {
-    return new Promise((resolve, reject) => {
-        const user = headers.uid;
-        const client = headers.client;
-        const expiry = headers.expiry;
-        const authToken = headers['access-token'];
-        const now = new Date();
-
-        User.findById(user).then((userToValidate) => {
-            let session = userToValidate.sessions.find((session) => {
-                return session.id === client;
-            });
-            if (session){
-                if (session.authToken === authToken && now.getTime() < expiry){
-                    resolve(userToValidate);
-                } else {
-                    reject(Error("Expired Session"));
-                }
-            } else {
-                reject(Error("No session found"));
-            }
-        })
-    })
-};
-
 //Non-user auth stuff goes below this line
 
-router.get('/:username', (req, res) => {
+router.get('/', (req, res) => {
     authenticateUser(req.headers).then((user) => {
         res.json({
             firstName: user.firstName,

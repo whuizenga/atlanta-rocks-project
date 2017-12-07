@@ -20,7 +20,7 @@ class UserInformation extends Component {
     componentWillMount() {
         const userId = this.props.userId;
 
-        axios.get(`/api/user/${userId}`).then((res) => {
+        axios.get(`/api/user/`).then((res) => {
             const newState = {...this.state};
             newState.firstName = res.data.firstName;
             newState.lastName = res.data.lastName;
