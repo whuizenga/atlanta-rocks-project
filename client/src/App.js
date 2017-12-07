@@ -39,7 +39,8 @@ class App extends Component {
         } else {
           this.setState({
             loggedIn: true,
-            userId: localStorage.getItem("uid")
+            userId: localStorage.getItem("uid"),
+            username: localStorage.getItem("username"),
           });
         }
       });
@@ -59,6 +60,7 @@ class App extends Component {
 
         if(res.data.username){
           setAxiosHeaders(res.headers);
+          localStorage.setItem("username", res.data.username);
           newState.userId = res.data._id;
           newState.loggedIn = true;
           newState.username = res.data.username;
@@ -170,7 +172,7 @@ class App extends Component {
                 loggedIn={this.state.loggedIn}
                 accountCreated={this.state.accountCreationSuccess}
                 />} />
-          <Route exact path="/user/:username" render={routeProps => 
+          <Route exact path="/userprofile" render={routeProps => 
               <UserPage {...routeProps}
                 loggedIn = {this.state.loggedIn}
                 userId = {this.state.userId}

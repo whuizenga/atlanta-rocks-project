@@ -21,10 +21,11 @@ class UserInformation extends Component {
         const userId = this.props.userId;
 
         axios.get(`/api/user/${userId}`).then((res) => {
+            console.log(res.data);
             const newState = {...this.state};
             newState.firstName = res.data.firstName;
             newState.lastName = res.data.lastName;
-            newState.joinDate = res.data.created_date
+            newState.joinDate = res.data.joinDate;
             newState.username = res.data.username;
             newState.admin = res.data.admin;
             newState.userId = userId;
@@ -88,7 +89,7 @@ class UserInformation extends Component {
         return (
             <div>
                 <StyledUsername><p>username: {this.state.admin ? `[ADMIN]:` : null}{this.state.username}</p></StyledUsername>
-                <p>{`Name: ${this.props.firstName} ${this.props.lastName}`}</p>
+                {this.state.firstName && this.state.lastName ? <p>{`Name: ${this.props.firstName} ${this.props.lastName}`}</p> : <p>I'm sorry I don't know your name. <wbr/>Please enter it below.</p>}
                 <button onClick={this._toggleEditForm}>{this.state.editName ? "hide" : "edit"}</button>
                 <form onSubmit={this._updateName}>
                     {this.state.editName ?  

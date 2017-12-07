@@ -44,7 +44,7 @@ class LoginScreen extends Component {
 
         `
         if (this.props.loggedIn){
-            return <Redirect to={`/user/${this.props.username}`} />
+            return <Redirect to={`/userprofile`} />
         }
 
         return (

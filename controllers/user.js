@@ -197,4 +197,18 @@ authenticateUser = (headers) => {
     })
 };
 
+//Non-user auth stuff goes below this line
+
+router.get('/:username', (req, res) => {
+    authenticateUser(req.headers).then((user) => {
+        res.json({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            joinDate: user.created_date,
+            username: user.username,
+            admin: user.admin,
+            userId: user.id,
+        })
+    });
+});
 module.exports = router;

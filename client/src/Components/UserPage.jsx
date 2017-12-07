@@ -8,24 +8,23 @@ import DeleteUser from './DeleteUser';
 class UserPage extends Component {
     render() {
         const FindRouteButton = styled.div`
-        display: flex;
-        justify-content: center;
-        a {
-            font-size: 35px;
-            border-radius: 20px;
-            text-decoration: none;
-            background-color: red;
-            padding: 5px;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-        }
-        a:hover {
-            background-color: darkred;
-        }
+            display: flex;
+            justify-content: center;
+            a {
+                font-size: 35px;
+                border-radius: 20px;
+                text-decoration: none;
+                background-color: red;
+                padding: 5px;
+                color: white;
+                text-align: center;
+                text-decoration: none;
+            }
+            a:hover {
+                background-color: darkred;
+            }
         `
-
-
+        
         if (!this.props.loggedIn){
             return <Redirect to={`/`} />
         } else {
