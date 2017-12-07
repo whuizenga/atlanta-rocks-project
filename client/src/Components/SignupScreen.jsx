@@ -14,13 +14,14 @@ class SignupScreen extends Component {
         event.preventDefault();
 
         const username = event.target.username.value;
+        const email = event.target.email.value;
         const password = event.target.password.value;
         const passwordConfirm = event.target.passwordConfirm.value;
 
         if(password !== passwordConfirm){
             this.setState({doPasswordsMatch: false})
         } else {
-            this.props.handleSignup(username, password);
+            this.props.handleSignup(email, username, password);
         }    
     }
     render() {
@@ -46,7 +47,6 @@ class SignupScreen extends Component {
                 color: red;
             }
         `
-
         const FormWrapper = styled.div`
             text-align: right;
             opacity: 1;
@@ -70,6 +70,7 @@ class SignupScreen extends Component {
             <SigninDiv>
                 <LoginWrapper>
                 <FormWrapper>
+                <ButtonWrapper>{this.props.accountCreated ? <p>Account Created</p> : null }</ButtonWrapper>
                 <ButtonWrapper>{this.state.doPasswordsMatch ? null : <p>passwords don't match</p>}</ButtonWrapper>
                     <form onSubmit={this._handlePasswordConfirm}>
                         <div>
@@ -77,12 +78,16 @@ class SignupScreen extends Component {
                             <input name="username" type="text" placeholder="username" required/>
                         </div>
                         <div>
+                            <label htmlFor="email">Email: </label>
+                            <input name="email" type="email" placeholder="email" required/>
+                        </div>
+                        <div>
                             <label htmlFor="password">Password: </label>
-                            <input name="password" type="password" required/>
+                            <input name="password" type="password" min="8" required/>
                         </div>
                         <div>
                             <label htmlFor="passwordConfirm">Confirm password:</label>
-                            <input name="passwordConfirm" type="password" required/>
+                            <input name="passwordConfirm" type="password" min="8" required/>
                         </div>
                         <ButtonWrapper><button>Sign up</button></ButtonWrapper>
                     </form>

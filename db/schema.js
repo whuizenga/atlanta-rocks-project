@@ -6,6 +6,11 @@ const CommentSchema = mongoose.Schema({
     comment: String
 });
 
+const UserSessionSchema = mongoose.Schema({
+    authToken: String,
+    expiry: Date
+});
+
 const RatingSchema = mongoose.Schema({
     raterId: String,
     rating: {type: Number, minimum: 1, maximum: 5, multipleOf: 1}
@@ -28,10 +33,13 @@ const RouteSchema = mongoose.Schema({
 const UserSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
-    username: String,
+    username: {type: String, unique: true},
+    email: {type: String, unique: true},
     password: String,
     admin: Boolean,
     birthday: Date,
+    sessions: [ UserSessionSchema ],
+    comments: [ String ],
     created_date: Date,
     updated_date: Date,
 });
@@ -63,10 +71,12 @@ var CommentModel = mongoose.model("Comment", CommentSchema);
 var RatingModel = mongoose.model("Rating", RatingSchema);
 var RouteModel = mongoose.model("Route", RouteSchema);
 var UserModel = mongoose.model("User", UserSchema);
+var UserSessionModel = mongoose.model("UserSession", UserSessionSchema);
 
 module.exports = {
     Comment: CommentModel,
     Rating: RatingModel,
     Route: RouteModel,
-    User: UserModel
+    User: UserModel,
+    UserSession: UserSessionModel,
 }

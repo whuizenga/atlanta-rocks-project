@@ -17,6 +17,7 @@ class App extends Component {
   constructor(){
         super()
         this.state = {
+            accountCreationSuccess: false,
             loggedIn: false,
             userId: "",
             username: "",
@@ -56,15 +57,11 @@ class App extends Component {
       })
   }
 
-  _handleSignup = (username, password) => {
-    axios.post('/api/user/signup/', {username, password})
+  _handleSignup = (email, username, password) => {
+    axios.post('/api/user/', {email, username, password})
       .then((res) => {
-        const newState = {...this.state};
-          newState.userId = res.data._id;
-          newState.loggedIn = true;
-          newState.username = res.data.username;
-          newState.firstName = res.data.firstName;
-          newState.loginError = "";
+          const newState = {...this.state};
+          newState.accountCreationSuccess = true;
 
           this.setState(newState);
         })
@@ -149,6 +146,7 @@ class App extends Component {
               <SignupScreen {...routeProps}
                 handleSignup={this._handleSignup}
                 loggedIn={this.state.loggedIn}
+                accountCreated={this.state.accountCreationSuccess}
                 />} />
           <Route exact path="/user/:username" render={routeProps => 
               <UserPage {...routeProps}
