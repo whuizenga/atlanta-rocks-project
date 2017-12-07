@@ -18,7 +18,6 @@ class App extends Component {
   constructor(){
         super()
         this.state = {
-            accountCreationSuccess: false,
             loggedIn: false,
             userId: "",
             username: "",

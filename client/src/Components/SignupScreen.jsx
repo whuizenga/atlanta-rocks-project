@@ -8,6 +8,7 @@ class SignupScreen extends Component {
         
         this.state={
             doPasswordsMatch: true,
+            accountCreated: false,
         }
     }
     _handlePasswordConfirm = (event) => {
@@ -22,6 +23,9 @@ class SignupScreen extends Component {
             this.setState({doPasswordsMatch: false})
         } else {
             this.props.handleSignup(email, username, password);
+            this.setState({
+                accountCreated: true,
+            })
         }    
     }
     render() {
@@ -70,7 +74,7 @@ class SignupScreen extends Component {
             <SigninDiv>
                 <LoginWrapper>
                 <FormWrapper>
-                <ButtonWrapper>{this.props.accountCreated ? <p>Account Created</p> : null }</ButtonWrapper>
+                <ButtonWrapper>{this.state.accountCreated ? <p>Account Created</p> : null }</ButtonWrapper>
                 <ButtonWrapper>{this.state.doPasswordsMatch ? null : <p>passwords don't match</p>}</ButtonWrapper>
                     <form onSubmit={this._handlePasswordConfirm}>
                         <div>

@@ -143,7 +143,7 @@ router.post('/sign_in', (req, res) => {
         })
     }).catch((err) => {
         res.json({
-            error: "Couldn't find user"
+            error: "That email is not registered"
         })
     })
 });
