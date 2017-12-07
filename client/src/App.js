@@ -30,8 +30,8 @@ class App extends Component {
     }
 
   componentWillMount(){
-    setAxiosDefaults();
     if (localStorage.getItem("client")){
+    setAxiosDefaults();
       axios.get('/api/user/validate_token').then((res) => {
         if (res.data.error){
           console.log(res.data.error);
@@ -106,6 +106,7 @@ class App extends Component {
   }
 
   _handleLogout = (event) => {
+    if(this.state.loggedIn){
       axios.delete('api/user/sign_out').then((res) => {
         deleteSession();
         const newState = {...this.state};
@@ -117,6 +118,7 @@ class App extends Component {
 
         this.setState(newState);
       });
+    }
   }
 
   _updateRouteSearch = (searchParam) => {
