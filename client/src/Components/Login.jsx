@@ -21,7 +21,7 @@ class Login extends Component {
                 {loggedIn ? <p> Welcome back, <Link to={`/userprofile`}> {this.props.username} </Link> </p> : null }
 
                 <div onClick={this.props.handleLogout}>
-                    {loggedIn ? <Link to="/">Log out</Link> : <Link to="/login">Log in</Link>}
+                    {loggedIn ? <a>Log Out</a> : <Link to="/login">Log in</Link>}
                 </div>
             </LoginWrapper>
         );
