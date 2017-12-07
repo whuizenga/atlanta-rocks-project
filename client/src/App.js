@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
+import { setAxiosHeaders, setAxiosDefaults, deleteSession } from './util.js';
 
 import LoginButton from './Components/Login';
 import Homepage from './Components/Homepage.jsx';
@@ -28,18 +29,36 @@ class App extends Component {
         }
     }
 
+  componentWillMount(){
+    setAxiosDefaults();
+    if (localStorage.getItem("client")){
+      axios.get('/api/user/validate_token').then((res) => {
+        if (res.data.error){
+          console.log(res.data.error);
+          localStorage.clear();
+        } else {
+          this.setState({
+            loggedIn: true,
+            userId: localStorage.getItem("uid")
+          });
+        }
+      });
+    }
+  }
+
   _handleLogin = (event) => {
     event.preventDefault();
 
-    const username = event.target.username.value;
+    const email = event.target.email.value;
     const password = event.target.password.value;
 
-    axios.post(`/api/user/login/`, {username, password})
+    axios.post(`/api/user/sign_in/`, {email, password})
       .then((res) => {
         
         const newState = {...this.state};
 
         if(res.data.username){
+          setAxiosHeaders(res.headers);
           newState.userId = res.data._id;
           newState.loggedIn = true;
           newState.username = res.data.username;
@@ -77,14 +96,17 @@ class App extends Component {
   }
 
   _handleLogout = (event) => {
-      const newState = {...this.state};
-      newState.username = "";
-      newState.firstName = "";
-      newState.lastName = "";
-      newState.loginError = "";
-      newState.loggedIn = false;
+      axios.delete('api/user/sign_out').then((res) => {
+        deleteSession();
+        const newState = {...this.state};
+        newState.username = "";
+        newState.firstName = "";
+        newState.lastName = "";
+        newState.loginError = "";
+        newState.loggedIn = false;
 
-      this.setState(newState);
+        this.setState(newState);
+      });
   }
 
   _updateRouteSearch = (searchParam) => {

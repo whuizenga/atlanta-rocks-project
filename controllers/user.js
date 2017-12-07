@@ -97,6 +97,9 @@ router.post('/sign_in', (req, res) => {
                 //send back information.
                 res.json({
                     user: userSigningIn.id,
+                    username: userSigningIn.username,
+                    firstName: userSigningIn.firstName,
+                    lastName: userSigningIn.lastName
                 });
             } else {
                 res.json({
@@ -116,7 +119,7 @@ router.delete('/sign_out', (req, res) => {
 
     User.findById(user).then((userToLogOut) => {
         let sessionIndex = userToLogOut.sessions.findIndex((session) => {
-        return session.id === client
+            return session.id === client
         });
         userToLogOut.sessions.splice(sessionIndex, 1);
         userToLogOut.save();

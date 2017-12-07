@@ -56,12 +56,12 @@ class LoginScreen extends Component {
                     <form onSubmit={this.props.handleLogin}>
                         <FormWrapper>
                         <div className="userName">
-                        <label htmlFor="username">Username: </label>
-                        <input name="username" type="text" required/>  
+                            <label htmlFor="email">Email: </label>
+                            <input name="email" type="text" required/>  
                         </div>
                         <div className="password">
-                        <label htmlFor="password">Password: </label>
-                        <input name="password" type="password" required/> 
+                            <label htmlFor="password">Password: </label>
+                            <input name="password" type="password" required/> 
                         </div>
                         </FormWrapper>
                         <ButtonWrapper><button>Log in</button></ButtonWrapper>
