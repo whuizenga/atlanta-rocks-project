@@ -68,7 +68,7 @@ class App extends Component {
           newState.lastName = res.data.lastName;
           newState.loginError = "";
         } else {
-          newState.loginError = res.data;
+          newState.loginError = res.data.error;
         };
         this.setState(newState);
 

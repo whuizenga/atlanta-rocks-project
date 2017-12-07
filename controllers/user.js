@@ -54,6 +54,29 @@ router.post('/', (req, res) => {
 //delete user account ('/')
 
 //update user account, password ('/')
+router.put('/', (req, res) => {
+    authenticateUser(req.headers).then((user) => {
+        bcrypt.compare(req.body.oldPassword, user.password).then((passwordVerdict) => {
+            if (passwordVerdict){
+                let logTime = new Date;
+                console.log(logTime + ":: User " + user.id + " has updated their password");
+
+                bcrypt.hash(req.body.newPassword, 10).then((hash) => {
+                    user.password = hash;
+                    user.save();
+
+                    res.json({
+                        message: "password updated",
+                    })
+                })
+            } else{
+                res.json({
+                    message: "wrong password"
+                })
+            }
+        })
+    });
+});
 
 //post, sign in ('/sign_in')
 router.post('/sign_in', (req, res) => {
@@ -76,7 +99,7 @@ router.post('/sign_in', (req, res) => {
         bcrypt.compare(password, userSigningIn.password).then((passwordVerdict) => {
             if (passwordVerdict){
                 let logTime = new Date;
-                console.log(logTime + ":: user "+userSigningIn.id+" just signed in.");
+                console.log(logTime + ":: User "+userSigningIn.id+" just signed in.");
 
                 //create new session
                 let session = new UserSession();
