@@ -89,8 +89,16 @@ class App extends Component {
   }
   
   _handleDeleteUser = () => {
-    axios.get(`/api/user/${this.state.userId}/delete`).then(() => {
-      this._handleLogout();
+    axios.delete(`/api/user/`).then(() => {
+      deleteSession();
+      const newState = {...this.state};
+      newState.username = "";
+      newState.firstName = "";
+      newState.lastName = "";
+      newState.loginError = "";
+      newState.loggedIn = false;
+
+      this.setState(newState);
     }).catch((err) => {
       console.log("error sending delete");
       console.log(err);

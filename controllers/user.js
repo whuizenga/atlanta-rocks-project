@@ -52,6 +52,17 @@ router.post('/', (req, res) => {
 });
 
 //delete user account ('/')
+router.delete('/', (req, res) => {
+    authenticateUser(req.headers).then((user) => {
+        User.findByIdAndRemove(user.id).then((userRemoved) => {
+            let logTime = new Date;
+            console.log(logTime + ":: User " + user.id + " has just deleted their account. We are sorry to see them go..");
+            res.json({
+                message: `${userRemoved.username} has been deleted. Good bye.`
+            });
+        });
+    })
+})
 
 //update user account, password ('/')
 router.put('/', (req, res) => {
