@@ -21,7 +21,6 @@ class UserInformation extends Component {
         const userId = this.props.userId;
 
         axios.get(`/api/user/${userId}`).then((res) => {
-            console.log(res.data);
             const newState = {...this.state};
             newState.firstName = res.data.firstName;
             newState.lastName = res.data.lastName;
@@ -55,7 +54,6 @@ class UserInformation extends Component {
         const newPasswordConfirm = event.target.newPasswordConfirm.value;
 
         if (!(newPassword === newPasswordConfirm)){
-            console.log("passwords do not match");
             const newState = {...this.state};
             newState.updatePasswordError = "passwords do not match"
             this.setState(newState);
