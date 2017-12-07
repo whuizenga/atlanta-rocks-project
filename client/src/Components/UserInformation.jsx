@@ -77,6 +77,8 @@ class UserInformation extends Component {
 
         const newState ={...this.state};
         newState.editName = false;
+        newState.firstName = firstName;
+        newState.lastName = lastName;
         this.setState(newState); 
     }
     render() {
