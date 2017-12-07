@@ -211,4 +211,20 @@ router.get('/:username', (req, res) => {
         })
     });
 });
+
+router.put('/update_name', (req, res) => {
+    authenticateUser(req.headers).then((user) => {
+        let firstName = req.body.firstName;
+        let lastName = req.body.lastName;
+
+        user.firstName = firstName;
+        user.lastName = lastName;
+        user.save();
+
+        res.json({
+            firstName: user.firstName,
+            lastName: user.lastName,
+        })
+    })
+})
 module.exports = router;
